@@ -187,6 +187,7 @@ void Tweenzor::removeTween( float* a_property ) {
 				//cout << "Tweenzor :: removeTween : property = " <<  it->getProperty() << " = " << a_property << endl;
 				(*it)->remove();
 				__instance->_tweens.erase( it );
+                delete *it;
 				break;
 			}
 			i++;
