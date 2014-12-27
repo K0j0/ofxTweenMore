@@ -26,6 +26,8 @@ void ofApp::setup() {
 	
 //	Tweenzor::add(&_x1, 200.f, 900.f, 0.f, 1.f);
     Tweenzor::add(&pos1, ofVec2f(200, 50), ofVec2f(900, 50), 0.f, 1.f);
+    
+    TweenVec2 * foo = Tweenzor::getTween(&pos1);
 	
 	// lets set the tween to repeat once
 	// it will run once and then repeat once

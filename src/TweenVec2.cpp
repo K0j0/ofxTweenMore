@@ -33,6 +33,8 @@ TweenVec2::TweenVec2(ofVec2f * a_property, int a_millis, ofVec2f  a_begin, ofVec
 
 //--------------------------------------------------------------
 void TweenVec2::_setup(ofVec2f * a_property, ofVec2f a_begin, ofVec2f a_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a) {
+    _tweenType = VEC2;
+    
     _propAdd	= a_property;
     
     _begin		= a_begin;

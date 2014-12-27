@@ -34,6 +34,8 @@ Tween::Tween(float* a_property, int a_millis, float a_begin, float a_end, float 
 
 //--------------------------------------------------------------
 void Tween::_setup(float* a_property, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a) {
+    _tweenType = FLOAT;
+    
 	_propAdd	= a_property;
 	
 	_begin		= a_begin;

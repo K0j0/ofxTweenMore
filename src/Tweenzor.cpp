@@ -62,7 +62,26 @@ void Tweenzor::update(int a_millis) {
 		for(int i = _totesTweens-1; i >= 0; i--) {
 			if(__instance->_tweens[i]->complete()) {
 				//removeCompleteListener( &__instance->_tweens[i] );
-				removeTween( __instance->_tweens[i]->getProperty() );
+                switch(__instance->_tweens[i]->getTweenType()){
+                    case Tween::FLOAT:
+                        removeTween( __instance->_tweens[i]->getProperty() );
+                    break;
+                    case Tween::VEC2:
+                        removeTween( static_cast<TweenVec2 *>(__instance->_tweens[i])->getProperty() );
+                    break;
+                    case Tween::VEC3:
+                        removeTween( __instance->_tweens[i]->getProperty() );
+                    break;
+                    case Tween::VEC4:
+                        removeTween( __instance->_tweens[i]->getProperty() );
+                    break;
+                    case Tween::RECT:
+                        removeTween( __instance->_tweens[i]->getProperty() );
+                    break;
+                    case Tween::COLOR:
+                        removeTween( __instance->_tweens[i]->getProperty() );
+                    break;
+                }
 			}
 		}
 		
@@ -79,6 +98,7 @@ void Tweenzor::update(int a_millis) {
 	_twCount = 0;
 	for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
 		(*it)->update( __instance->_currMillis );
+        (*it)->getTweenType();
 		//if(it->complete()) {
 			//cout << "Tweenzor :: update : complete ["<<_twCount<<"]" << endl;
 		//}
@@ -190,6 +210,27 @@ void Tweenzor::removeTween( float* a_property ) {
 }
 
 //--------------------------------------------------------------
+void Tweenzor::removeTween( ofVec2f * a_property ) {
+    if (__instance->_tweens.size() > 0) {
+        int i = 0;
+        vector<Tween *>::iterator it;
+        for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
+            if((*it)->getTweenType() == TweenVec2::VEC2){
+                if (static_cast<TweenVec2 *>(*it)->getProperty() == a_property ) {
+                    //cout << "Tweenzor :: removeTween : property = " <<  it->getProperty() << " = " << a_property << endl;
+                    (*it)->remove();
+                    __instance->_tweens.erase( it );
+                    delete *it;
+                    break;
+                }
+            }
+            i++;
+        }
+        
+    }
+}
+
+//--------------------------------------------------------------
 Tween* Tweenzor::getTween( float* a_property ) {
 	vector<Tween *>::iterator it;
 	for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
@@ -204,8 +245,14 @@ Tween* Tweenzor::getTween(ofFloatColor *color) {
     return getTween(&color->r);
 }
 
-Tween* Tweenzor::getTween(ofVec2f *vec) {
-    return getTween(&vec->x);
+TweenVec2 * Tweenzor::getTween(ofVec2f * vec) {
+    vector<Tween *>::iterator it;
+    for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); ++it ) {
+        if((*it)->getTweenType() == Tween::VEC2 && static_cast<TweenVec2 *>(*it)->getProperty() == vec) {
+            return static_cast<TweenVec2 *>(*it);
+        }
+    }
+    return NULL;
 }
 
 Tween* Tweenzor::getTween(ofVec3f *vec) {

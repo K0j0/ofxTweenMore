@@ -103,7 +103,8 @@ public:
 	static void add( TweenParams& a_params );
 	static void add( vector<TweenParams>& a_params );
 	static void removeAllTweens();
-	static void removeTween( float* a_property );
+	static void removeTween( float * a_property );
+    static void removeTween( ofVec2f * a_property );
 	
 	static void destroy();
 	
@@ -116,7 +117,7 @@ public:
 	
 	static Tween* getTween( float * a_property );
     static Tween* getTween( ofFloatColor *color );
-    static Tween* getTween( ofVec2f *vec );
+    static TweenVec2 * getTween( ofVec2f *vec );
     static Tween* getTween( ofVec3f *vec );
     static Tween* getTween( ofVec4f *vec );
     static Tween* getTween( ofRectangle *rect );

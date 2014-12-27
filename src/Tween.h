@@ -17,6 +17,14 @@
 
 class Tween {
 public:
+    enum TweenType{
+        FLOAT,
+        VEC2,
+        VEC3,
+        VEC4,
+        COLOR,
+        RECT
+    };
 	
 	Tween() {};
 	
@@ -44,8 +52,9 @@ public:
 	virtual void updateProperty();
 	float getTimePct();
 	void setTimePct(float a_pct, int a_millis = 0);
-	
 	void setRepeat( int a_repeat, bool a_pingPong=false );
+    
+    virtual TweenType getTweenType() { return _tweenType; }
 	
 	unsigned int eventID;
 	
@@ -74,6 +83,8 @@ protected:
 	bool _isComplete;
 	bool _isRunning;
 	bool _useSeconds;
+    
+    TweenType _tweenType;
 	
 	
 };
