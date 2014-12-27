@@ -112,6 +112,7 @@ void Tween::reset(int a_millis) {
 
 //--------------------------------------------------------------
 void Tween::update(int a_millis) {
+    ofLog() << this << " EventID: " << eventID;
 	//cout << "Tween :: update : time= " << _time << " duration+delay= " << _duration + _delay << " running: " << running() << " complete: " << complete() << endl;
 	
 	if (_useSeconds) {

@@ -23,6 +23,7 @@ public:
     
     ofVec2f * getProperty();
     ofVec2f getPropertyValue();
+    // TODO, optimize by storing which properties have the greatest range in setup() then just compare those
     float getPropertyPct();
     void updateProperty();
     

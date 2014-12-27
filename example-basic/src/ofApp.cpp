@@ -24,10 +24,9 @@ void ofApp::setup() {
     pos1 = ofVec2f(200, 50);
 	
 	
-//	Tweenzor::add(&_x1, 200.f, 900.f, 0.f, 1.f);
-    Tweenzor::add(&pos1, ofVec2f(200, 50), ofVec2f(900, 50), 0.f, 1.f);
+	Tweenzor::add(&_x1, 200.f, 900.f, 0.f, 2.f);
+//    Tweenzor::add(&pos1, ofVec2f(200, 50), ofVec2f(900, 50), 0.f, 1.f);
     
-    TweenVec2 * foo = Tweenzor::getTween(&pos1);
 	
 	// lets set the tween to repeat once
 	// it will run once and then repeat once
@@ -41,9 +40,10 @@ void ofApp::setup() {
 	// it will go begin value -> end value
 	// and then repeat begin value -> end value
 	
-//	Tweenzor::getTween( &_x1 )->setRepeat( 1, true );
+	Tweenzor::getTween( &_x1 )->setRepeat( 1, true );
+//    Tweenzor::getTween( &pos1 )->setRepeat( 1, true );
 	// let's add a listener so we know when this tween is done //
-//	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete);
+	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete);
 
 }
 
@@ -113,8 +113,8 @@ void ofApp::draw(){
 	
 	
 	ofSetColor(255, 0, 0);
-//	ofDrawCircle(_x1, 50, 10);
-    ofDrawCircle(pos1.x, pos1.y, 10);
+	ofDrawCircle(_x1, 50, 10);
+//    ofDrawCircle(pos1.x, pos1.y, 10);
 	ofDrawCircle(_x2, 100, 10);
 	ofDrawCircle(_x3, 150, 10);
 	ofDrawCircle(_x4, 200, 10);

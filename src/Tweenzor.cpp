@@ -235,7 +235,7 @@ Tween* Tweenzor::getTween( float* a_property ) {
 	vector<Tween *>::iterator it;
 	for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
 		if((*it)->getProperty() == a_property) {
-			return ((Tween*) &(*it));
+			return (*it);
 		}
 	}
 	return NULL;
