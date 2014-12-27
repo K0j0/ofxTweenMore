@@ -25,7 +25,9 @@ public:
     
     virtual ~Tween() { ofLog() << "Destroying Tween"; }
 	
-	virtual void update(int a_millis);
+    void update(int a_millis);
+    virtual void updateComplete(bool isComplete, int a_millis); // run when duration and delay have passed
+    
 	void remove();
 	
 	bool complete();

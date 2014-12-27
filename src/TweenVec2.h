@@ -19,7 +19,7 @@ public:
     TweenVec2(ofVec2f * a_property, ofVec2f a_begin, ofVec2f a_end, int a_delay, int a_duration, int a_easeType, float a_p=0, float a_a=0);
     TweenVec2(ofVec2f * a_property, int a_millis, ofVec2f a_begin, ofVec2f a_end, float a_delay, float a_duration, int a_easeType, float a_p=0, float a_a=0);
     
-    void update(int a_millis);
+    void updateComplete(bool bTweenIsComplete, int a_millis);
     
     ofVec2f * getProperty();
     ofVec2f getPropertyValue();

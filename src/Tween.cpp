@@ -143,39 +143,43 @@ void Tween::update(int a_millis) {
 		
 		//cout << "Tween :: update : bTweenIsComplete= " << bTweenIsComplete << " _repeatCount= " << _repeatCount << endl;
 		
-		if(bTweenIsComplete) {
-			_isComplete = true;
-			_isRunning = false;
-			// let's make sure we hit the initial values //
-			if(_dir == 1) {
-				*_propAdd = _initEnd;
-			} else {
-				*_propAdd = _initBegin;
-			}
-			
-		} else {
-			if (_useSeconds) {
-				_startTime = a_millis;
-			} else {
-				_time = 0;
-			}
-			_delay = 0;
-			if(_pingPong) {
-				_dir = _dir == 1 ? -1 : 1;
-			}
-			// adjust for the proper direction of the tween //
-			if(_dir == 1) {
-				_begin		= _initBegin;
-				_end		= _initEnd;
-				_change		= _end - _begin;
-			} else {
-				_begin		= _initEnd;
-				_end		= _initBegin;
-				_change		= _end - _begin;
-			}
-		}
+        updateComplete(bTweenIsComplete, a_millis);
+		
 	}
-	
+}
+
+void Tween::updateComplete(bool bTweenIsComplete, int a_millis){
+    if(bTweenIsComplete) {
+        _isComplete = true;
+        _isRunning = false;
+        // let's make sure we hit the initial values //
+        if(_dir == 1) {
+            *_propAdd = _initEnd;
+        } else {
+            *_propAdd = _initBegin;
+        }
+        
+    } else {
+        if (_useSeconds) {
+            _startTime = a_millis;
+        } else {
+            _time = 0;
+        }
+        _delay = 0;
+        if(_pingPong) {
+            _dir = _dir == 1 ? -1 : 1;
+        }
+        // adjust for the proper direction of the tween //
+        if(_dir == 1) {
+            _begin		= _initBegin;
+            _end		= _initEnd;
+            _change		= _end - _begin;
+        } else {
+            _begin		= _initEnd;
+            _end		= _initBegin;
+            _change		= _end - _begin;
+        }
+    }
 }
 
 //--------------------------------------------------------------

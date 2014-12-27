@@ -125,13 +125,6 @@ void Tweenzor::add(ofFloatColor *a_color, const ofFloatColor &c_begin, const ofF
     add(&a_color->a, c_begin.a, c_end.a, a_delay, a_duration, a_easetype, a_p, a_a);
 }
 
-/*
-void Tweenzor::add(ofVec2f *a_vec, const ofVec2f &c_begin, const ofVec2f &c_end, float a_delay, float a_duration, int a_easetype, float a_p, float a_a) {
-    add(&a_vec->x, c_begin.x, c_end.x, a_delay, a_duration, a_easetype, a_p, a_a);
-    add(&a_vec->y, c_begin.y, c_end.y, a_delay, a_duration, a_easetype, a_p, a_a);
-}
-*/
-
 void Tweenzor::add(ofVec2f *a_vec, const ofVec2f &c_begin, const ofVec2f &c_end, float a_delay, float a_duration, int a_easetype, float a_p, float a_a) {
 //    removeCompleteListener( a_property );
 //    removeTween( a_property );

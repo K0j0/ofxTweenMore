@@ -62,70 +62,36 @@ void TweenVec2::_setup(ofVec2f * a_property, ofVec2f a_begin, ofVec2f a_end, flo
     eventID		= -1;
 }
 
-void TweenVec2::update(int a_millis) {
-    //cout << "Tween :: update : time= " << _time << " duration+delay= " << _duration + _delay << " running: " << running() << " complete: " << complete() << endl;
-    
-    if (_useSeconds) {
-        if (_isRunning) _time = (float) a_millis - _startTime;
-    }
-    
-    if (_time <= _duration + _delay) {
-        //cout << "Tween :: update : time= " << _time << " duration+delay= " << _duration + _delay << " running: " << running() << endl;
-        if (_isRunning) {
-            if (_time >= _delay) {
-                updateProperty();
-            }
-            if (!_useSeconds) _time += 1.f;
+void TweenVec2::updateComplete(bool bTweenIsComplete, int a_millis){
+    if(bTweenIsComplete) {
+        _isComplete = true;
+        _isRunning = false;
+        // let's make sure we hit the initial values //
+        if(_dir == 1) {
+            *_propAdd = _initEnd;
+        } else {
+            *_propAdd = _initBegin;
         }
+        
     } else {
-        // no events in ofxiPhone right now :( well, maybe now there is. :/
-        //ofNotifyEvent(ON_COMPLETE, _event, this);
-        
-        bool bTweenIsComplete = false;
-        // lets check on the repeat //
-        if(_repeatTotal == 0) {
-            bTweenIsComplete = true;
-        } else if(_repeatCount >= _repeatTotal) {
-            bTweenIsComplete = true;
+        if (_useSeconds) {
+            _startTime = a_millis;
         } else {
-            _repeatCount++;
+            _time = 0;
         }
-        if (_repeatTotal == -1) { // run forever //
-            bTweenIsComplete = false;
+        _delay = 0;
+        if(_pingPong) {
+            _dir = _dir == 1 ? -1 : 1;
         }
-        
-        //cout << "Tween :: update : bTweenIsComplete= " << bTweenIsComplete << " _repeatCount= " << _repeatCount << endl;
-        
-        if(bTweenIsComplete) {
-            _isComplete = true;
-            _isRunning = false;
-            // let's make sure we hit the initial values //
-            if(_dir == 1) {
-                *_propAdd = _initEnd;
-            } else {
-                *_propAdd = _initBegin;
-            }
-            
+        // adjust for the proper direction of the tween //
+        if(_dir == 1) {
+            _begin		= _initBegin;
+            _end		= _initEnd;
+            _change		= _end - _begin;
         } else {
-            if (_useSeconds) {
-                _startTime = a_millis;
-            } else {
-                _time = 0;
-            }
-            _delay = 0;
-            if(_pingPong) {
-                _dir = _dir == 1 ? -1 : 1;
-            }
-            // adjust for the proper direction of the tween //
-            if(_dir == 1) {
-                _begin		= _initBegin;
-                _end		= _initEnd;
-                _change		= _end - _begin;
-            } else {
-                _begin		= _initEnd;
-                _end		= _initBegin;
-                _change		= _end - _begin;
-            }
+            _begin		= _initEnd;
+            _end		= _initBegin;
+            _change		= _end - _begin;
         }
     }
 }
