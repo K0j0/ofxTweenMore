@@ -35,18 +35,18 @@ void Tweenzor::update(int a_millis) {
 	//cout << "Tweenzor :: update : size() = " << __instance->_tweens.size() << endl;
 	
 	int _twCount = 0;
-	vector<Tween>::iterator it;
+	vector<Tween *>::iterator it;
 	
 	vector<int> eventsToFire;
 	vector<float*> eventArgs;
 	
 	
 	for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) { 
-		if(it->complete()) {
-			int evindex = getEventIDForTween( &(*it) );
+		if((*it)->complete()) {
+			int evindex = getEventIDForTween( *it );
 			if(evindex > -1) {
 				//float args = it->getPropertyValue();
-				float* arg = it->getProperty();
+				float* arg = (*it)->getProperty();
 				//cout << "Tweenzor :: update : is complete = " << _twCount << endl;
 				//__instance->_events[evindex]( arg );
 				eventsToFire.push_back( evindex );
@@ -60,9 +60,9 @@ void Tweenzor::update(int a_millis) {
 	if(__instance->_tweens.size() > 0) {
 		int _totesTweens = __instance->_tweens.size();
 		for(int i = _totesTweens-1; i >= 0; i--) {
-			if(__instance->_tweens[i].complete()) {
+			if(__instance->_tweens[i]->complete()) {
 				//removeCompleteListener( &__instance->_tweens[i] );
-				removeTween( __instance->_tweens[i].getProperty() );
+				removeTween( __instance->_tweens[i]->getProperty() );
 			}
 		}
 		
@@ -78,7 +78,7 @@ void Tweenzor::update(int a_millis) {
 	
 	_twCount = 0;
 	for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
-		it->update( __instance->_currMillis );
+		(*it)->update( __instance->_currMillis );
 		//if(it->complete()) {
 			//cout << "Tweenzor :: update : complete ["<<_twCount<<"]" << endl;
 		//}
@@ -92,7 +92,7 @@ void Tweenzor::update(int a_millis) {
 void Tweenzor::add(float* a_property, float a_begin, float a_end, int a_delay, int a_duration, int a_easeType, float a_p, float a_a) {
 	removeCompleteListener( a_property );
 	removeTween( a_property );
-	Tween tweenzlebob( a_property, __instance->_currMillis, a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a );
+	Tween * tweenzlebob = new Tween( a_property, __instance->_currMillis, a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a );
 	__instance->_tweens.push_back( tweenzlebob );
 }
 
@@ -103,7 +103,7 @@ void Tweenzor::add(float* a_property, float a_begin, float a_end, float a_delay,
 	//cout << "Tweenzor :: add : before size() = " << __instance->_tweens.size() << endl;
 	removeCompleteListener( a_property );
 	removeTween( a_property );
-	Tween tweenzlebob( a_property, __instance->_currMillis, a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a );
+	Tween * tweenzlebob = new Tween( a_property, __instance->_currMillis, a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a );
 	__instance->_tweens.push_back( tweenzlebob );
 	//cout << "Tweenzor :: add : after size() = " << __instance->_tweens.size() << endl;
 	//cout << endl;
@@ -125,10 +125,20 @@ void Tweenzor::add(ofFloatColor *a_color, const ofFloatColor &c_begin, const ofF
     add(&a_color->a, c_begin.a, c_end.a, a_delay, a_duration, a_easetype, a_p, a_a);
 }
 
+/*
 void Tweenzor::add(ofVec2f *a_vec, const ofVec2f &c_begin, const ofVec2f &c_end, float a_delay, float a_duration, int a_easetype, float a_p, float a_a) {
     add(&a_vec->x, c_begin.x, c_end.x, a_delay, a_duration, a_easetype, a_p, a_a);
     add(&a_vec->y, c_begin.y, c_end.y, a_delay, a_duration, a_easetype, a_p, a_a);
 }
+*/
+
+void Tweenzor::add(ofVec2f *a_vec, const ofVec2f &c_begin, const ofVec2f &c_end, float a_delay, float a_duration, int a_easetype, float a_p, float a_a) {
+//    removeCompleteListener( a_property );
+//    removeTween( a_property );
+    TweenVec2 * tweenzlebob = new TweenVec2( a_vec, __instance->_currMillis, c_begin, c_end, a_delay, a_duration, a_easetype, a_p, a_a );
+    __instance->_tweens.push_back( tweenzlebob );
+}
+
 void Tweenzor::add(ofVec3f *a_vec, const ofVec3f &c_begin, const ofVec3f &c_end, float a_delay, float a_duration, int a_easetype, float a_p, float a_a) {
     add(&a_vec->x, c_begin.x, c_end.x, a_delay, a_duration, a_easetype, a_p, a_a);
     add(&a_vec->y, c_begin.y, c_end.y, a_delay, a_duration, a_easetype, a_p, a_a);
@@ -171,11 +181,11 @@ void Tweenzor::add( vector<TweenParams>& a_params ) {
 void Tweenzor::removeTween( float* a_property ) {
 	if (__instance->_tweens.size() > 0) {
 		int i = 0;
-		vector<Tween>::iterator it;
+		vector<Tween *>::iterator it;
 		for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
-			if ( it->getProperty() == a_property ) {
+			if ( (*it)->getProperty() == a_property ) {
 				//cout << "Tweenzor :: removeTween : property = " <<  it->getProperty() << " = " << a_property << endl;
-				it->remove();
+				(*it)->remove();
 				__instance->_tweens.erase( it );
 				break;
 			}
@@ -187,9 +197,9 @@ void Tweenzor::removeTween( float* a_property ) {
 
 //--------------------------------------------------------------
 Tween* Tweenzor::getTween( float* a_property ) {
-	vector<Tween>::iterator it;
+	vector<Tween *>::iterator it;
 	for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
-		if(it->getProperty() == a_property) {
+		if((*it)->getProperty() == a_property) {
 			return ((Tween*) &(*it));
 		}
 	}
@@ -320,9 +330,9 @@ void Tweenzor::destroy() {
 //--------------------------------------------------------------
 void Tweenzor::pauseAllTweens() {
 	if (__instance->_tweens.size() > 0) {
-		vector<Tween>::iterator it;
+		vector<Tween *>::iterator it;
 		for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
-			it->pause();
+			(*it)->pause();
 		}
 	}
 }
@@ -330,9 +340,9 @@ void Tweenzor::pauseAllTweens() {
 //--------------------------------------------------------------
 void Tweenzor::resetAllTweens() {
 	if (__instance->_tweens.size() > 0) {
-		vector<Tween>::iterator it;
+		vector<Tween *>::iterator it;
 		for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
-			it->reset(__instance->_currMillis);
+			(*it)->reset(__instance->_currMillis);
 		}
 	}
 }
@@ -340,9 +350,9 @@ void Tweenzor::resetAllTweens() {
 //--------------------------------------------------------------
 void Tweenzor::resumeAllTweens() {
 	if (__instance->_tweens.size() > 0) {
-		vector<Tween>::iterator it;
+		vector<Tween *>::iterator it;
 		for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
-			it->resume(__instance->_currMillis);
+			(*it)->resume(__instance->_currMillis);
 		}
 	}
 }
@@ -351,9 +361,9 @@ void Tweenzor::resumeAllTweens() {
 //--------------------------------------------------------------
 void Tweenzor::toggleAllTweens() {
 	if (__instance->_tweens.size() > 0) {
-		vector<Tween>::iterator it;
+		vector<Tween *>::iterator it;
 		for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
-			it->toggle(__instance->_currMillis);
+			(*it)->toggle(__instance->_currMillis);
 		}
 	}
 }
@@ -361,7 +371,7 @@ void Tweenzor::toggleAllTweens() {
 //--------------------------------------------------------------
 Tween* Tweenzor::getRecentTween() {
 	if (__instance->_tweens.size() > 0) {
-		return &__instance->_tweens[__instance->_tweens.size() - 1];
+		return __instance->_tweens[__instance->_tweens.size() - 1];
 	}
   return 0;
 }

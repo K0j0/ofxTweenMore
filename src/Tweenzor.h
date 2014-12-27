@@ -13,6 +13,7 @@
 #include "ofColor.h"
 #include "ofVec2f.h"
 #include "Tween.h"
+#include "TweenVec2.h"
 #include "TweenEvent.h"
 
 typedef struct _tweenParams {
@@ -87,6 +88,7 @@ public:
 	
 	static void init();
 	static void update(int a_millis);
+    
 	static void add(float* a_property, float a_begin, float a_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
 	static void add(float* a_property, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
 	static void add(vector <float *> a_properties, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
@@ -157,7 +159,7 @@ protected:
 	
 private:
 	static Tweenzor* __instance;
-	vector <Tween> _tweens;
+	vector <Tween *> _tweens;
 	vector< TweenEv > _events;
 	
 	unsigned int _eventIndex;

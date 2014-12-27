@@ -20,9 +20,12 @@ void ofApp::setup() {
 	_x8 = 200.f;
 	_x9 = 200.f;
 	_x10 = 200.f;
+    
+    pos1 = ofVec2f(200, 50);
 	
 	
-	Tweenzor::add(&_x1, 200.f, 900.f, 0.f, 1.f);
+//	Tweenzor::add(&_x1, 200.f, 900.f, 0.f, 1.f);
+    Tweenzor::add(&pos1, ofVec2f(200, 50), ofVec2f(900, 50), 0.f, 1.f);
 	
 	// lets set the tween to repeat once
 	// it will run once and then repeat once
@@ -36,9 +39,9 @@ void ofApp::setup() {
 	// it will go begin value -> end value
 	// and then repeat begin value -> end value
 	
-	Tweenzor::getTween( &_x1 )->setRepeat( 1, true );
+//	Tweenzor::getTween( &_x1 )->setRepeat( 1, true );
 	// let's add a listener so we know when this tween is done //
-	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete);
+//	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete);
 
 }
 
@@ -90,7 +93,7 @@ void ofApp::draw(){
     ofSetColor(100, 100, 100);
 	for (int i = 0; i < 10; i++) {
 		float yPos = (float)i * 50 + 50;
-		ofLine(0, yPos, ofGetWidth(), yPos);
+		ofDrawLine(0, yPos, ofGetWidth(), yPos);
 	}
 	
 	ofDrawBitmapString("LINEAR", 20, 47);
@@ -108,16 +111,17 @@ void ofApp::draw(){
 	
 	
 	ofSetColor(255, 0, 0);
-	ofCircle(_x1, 50, 10);
-	ofCircle(_x2, 100, 10);
-	ofCircle(_x3, 150, 10);
-	ofCircle(_x4, 200, 10);
-	ofCircle(_x5, 250, 10);
-	ofCircle(_x6, 300, 10);
-	ofCircle(_x7, 350, 10);
-	ofCircle(_x8, 400, 10);
-	ofCircle(_x9, 450, 10);
-	ofCircle(_x10, 500, 10);
+//	ofDrawCircle(_x1, 50, 10);
+    ofDrawCircle(pos1.x, pos1.y, 10);
+	ofDrawCircle(_x2, 100, 10);
+	ofDrawCircle(_x3, 150, 10);
+	ofDrawCircle(_x4, 200, 10);
+	ofDrawCircle(_x5, 250, 10);
+	ofDrawCircle(_x6, 300, 10);
+	ofDrawCircle(_x7, 350, 10);
+	ofDrawCircle(_x8, 400, 10);
+	ofDrawCircle(_x9, 450, 10);
+	ofDrawCircle(_x10, 500, 10);
 }
 
 //--------------------------------------------------------------

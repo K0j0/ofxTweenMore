@@ -22,6 +22,7 @@ public:
     void gotMessage(ofMessage msg);
     
     float _x1, _x2, _x3, _x4, _x5, _x6, _x7, _x8, _x9, _x10;
+    ofVec2f pos1;
 	
 	bool paused;
 	
