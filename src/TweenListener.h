@@ -9,6 +9,7 @@ private:
     public:
         InnerBase(){}
         virtual void operator()() = 0;
+        virtual void clear() = 0;
     };
     
 public:
@@ -29,7 +30,16 @@ public:
         ~InnerTL(){}
         
         virtual void operator()(){
+            if(m_target == NULL || m_callback == NULL){
+                ofLogError() << "TweenListener callback has NULL properties";
+                return;
+            }
             (m_target->*m_callback)();
+        }
+        
+        virtual void clear(){
+            m_target = NULL;
+            m_callback = NULL;
         }
         
     protected:
@@ -55,15 +65,18 @@ public:
         
         ~InnerTL2(){}
         
-        virtual void operator()(Param p){
-            (m_target->*m_callback)(p);
-//            m_callback(p);
-//            (m_target)->(m_callback)(m_p);
+        virtual void operator()(){
+            if(m_target == NULL || m_callback == NULL){
+                ofLogError() << "TweenListener callback has NULL properties";
+                return;
+            }
+            (m_target->*m_callback)(m_p);
         }
         
-        virtual void operator()(){
-            ofLogWarning() << "Wil this work?";
-            (m_target->*m_callback)(m_p);
+        virtual void clear(){
+            m_target = NULL;
+            m_callback = NULL;
+            // can't set m_p to NULL since = becomes ambiguous for strings (and probably other types). Not sure if this is a real leak or problem
         }
         
     protected:
@@ -75,6 +88,7 @@ public:
     
     TweenListener() {}
     InnerBase * m_inner;
+    void clear() { m_inner->clear(); }
 };
 
 #endif

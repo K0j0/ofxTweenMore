@@ -64,6 +64,11 @@ public:
     void fooFunc() { ofLog() << "fooFunc called"; }
     void fooFunc2(string arg) { ofLog() << "fooFunc2 with arg " << arg; }
     
+    template<class inClass>
+    void addListener(inClass * target, void (inClass::*callback)()){
+        listener.m_inner = new TweenListener::InnerTL<inClass>(this, callback);
+    }
+    
     template<class inClass, typename Param>
     void addListener(inClass * target, void (inClass::*callback)(Param p), Param p){
         listener.m_inner = new TweenListener::InnerTL2<inClass, Param>(this, callback, p);
@@ -71,7 +76,7 @@ public:
     
     void callListener(){
         (*(listener.m_inner))();
-        
+        listener.clear();
     }
 	
 	
