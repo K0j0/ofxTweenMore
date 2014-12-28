@@ -30,7 +30,7 @@ private:
 	
 public: 
 	unsigned int ID; // this is the tween that is using it //
-	template <typename Class>
+	template <typename Class, typename Arg>
 	class T : public Base {
 		// Signature applied to a pointer-to-member for target class.
 		typedef void (Class::*Func)(float* args);
@@ -39,10 +39,12 @@ public:
 	private:
 		Class* mThis; // Pointer to the object we are delegating to.
 		Func   mFunc; // Address of the function on the delegate object.
+        Arg    arg;
 		
 	public:
-		
-		T(Class* aThis, void (Class::*aFunc)(float* args)) : mThis(aThis), mFunc(aFunc) { }
+
+        T(Class* aThis, void (Class::*aFunc)(float* args)) : mThis(aThis), mFunc(aFunc) { }
+		T(Class* aThis, void (Class::*aFunc)(float* args), Arg _arg) : mThis(aThis), mFunc(aFunc), arg(_arg) { }
 		
 		virtual void operator()(float* args) {
 			return (mThis->*mFunc)(args);

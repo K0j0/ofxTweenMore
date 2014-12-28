@@ -43,7 +43,7 @@ void ofApp::setup() {
 	Tweenzor::getTween( &_x1 )->setRepeat( 1, true );
 //    Tweenzor::getTween( &pos1 )->setRepeat( 1, true );
 	// let's add a listener so we know when this tween is done //
-	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete);
+	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete, &_x1);
 
 }
 
@@ -68,7 +68,7 @@ void ofApp::onComplete(float* arg) {
 	Tweenzor::add( &_x1, _begin, _tarX, 0.f, 2.f );
 	
 	// add the complete listener again so that it will fire again, creating a loop //
-	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete);
+	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete, &_x1);
 	
 	Tweenzor::add(&_x2, _x2, _tarX, 0.f, 2.f, EASE_IN_OUT_SINE);
 	Tweenzor::add(&_x3, _x3, _tarX, 0.f, 2.f, EASE_IN_OUT_QUAD);

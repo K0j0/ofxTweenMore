@@ -57,6 +57,7 @@ public:
     virtual TweenType getTweenType() { return _tweenType; }
 	
 	unsigned int eventID;
+    TweenEvent event;
 	
 	
 protected:
