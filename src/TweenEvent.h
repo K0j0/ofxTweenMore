@@ -17,7 +17,6 @@ class Tween;
 // event delegation //
 /// http://www.codeproject.com/KB/cpp/accppdelegates.aspx //
 
-//template <typename Arg>
 class TweenEvent {
 private:
 	

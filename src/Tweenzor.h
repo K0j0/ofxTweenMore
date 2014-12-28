@@ -125,19 +125,16 @@ public:
 	static Tween* getRecentTween();
 	
 	
-//	typedef TweenEvent<float> TweenEv;
-    typedef TweenEvent TweenEv;
 	// EVENTS, since POCO is weird //
 	template <class ListenerClass>
 	static void addCompleteListener( Tween* a_tween, ListenerClass* a_listener, void (ListenerClass::*a_listenerMethod)(float* args)) {
 		removeCompleteListener( a_tween );
-		TweenEv completeEvent;
-		completeEvent = new TweenEv::T<ListenerClass>(a_listener, a_listenerMethod);
+		TweenEvent completeEvent;
+		completeEvent = new TweenEvent::T<ListenerClass>(a_listener, a_listenerMethod);
 		// associate the IDs //
 		// can't use pointers, since when manipulating vector,
 		// the pointers change :(
 		completeEvent.setID( __instance->_eventIndex );
-        ofLog() << a_tween << " Set EventID: " << a_tween->eventID;
 		a_tween->eventID = __instance->_eventIndex;
 		__instance->_events.push_back( completeEvent );
 		//cout << "Tweenzor.h :: addCompleteListener : event id = " << __instance->_eventIndex << endl;
@@ -148,12 +145,6 @@ public:
 		}
 	}
     
-    /*
-    template<class ListenerClass, typename P>
-    static void addListener(Tween * tween, void (ListenerClass::*method)(P p), P p){
-        
-    }
-     */
 	
 	static void removeCompleteListener( Tween* a_tween );
 	static void removeCompleteListener( float* a_property );
@@ -170,7 +161,7 @@ protected:
 private:
 	static Tweenzor* __instance;
 	vector <Tween *> _tweens;
-	vector< TweenEv > _events;
+	vector<TweenEvent> _events;
 	
 	unsigned int _eventIndex;
 	int _currMillis;

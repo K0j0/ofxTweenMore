@@ -17,14 +17,13 @@ class Tween;
 // event delegation //
 /// http://www.codeproject.com/KB/cpp/accppdelegates.aspx //
 
-template <typename Arg>
+template <typename Parameter>
 class TweenEvent2 {
 private:
-    
     class Base {
     public:
         virtual ~Base() { }
-        virtual void operator()(float* args) = 0;
+        virtual void operator()(Parameter args) = 0;
     };
     Base* pointerino;
     bool _assigned;
@@ -34,7 +33,7 @@ public:
     template <typename Class>
     class T : public Base {
         // Signature applied to a pointer-to-member for target class.
-        typedef void (Class::*Func)(float* args);
+        typedef void (Class::*Func)(Parameter args);
         
         
     private:
@@ -43,9 +42,9 @@ public:
         
     public:
         
-        T(Class* aThis, void (Class::*aFunc)(float* args)) : mThis(aThis), mFunc(aFunc) { }
+        T(Class* aThis, void (Class::*aFunc)(Parameter args)) : mThis(aThis), mFunc(aFunc) { }
         
-        virtual void operator()(float* args) {
+        virtual void operator()(Parameter args) {
             return (mThis->*mFunc)(args);
         }
         
@@ -84,13 +83,12 @@ public:
         return _assigned;
     }
     
-    void operator()(float* args) {
+    void operator()(Parameter args) {
         if (pointerino) {
             //cout << "TweenEvent2 :: operator args = " << *args << "  _assigned = " << _assigned << endl;
             (*pointerino)(args);
         }
     }
-    
 };	
 
 #endif
