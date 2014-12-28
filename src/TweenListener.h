@@ -86,9 +86,13 @@ public:
     };
     
     
-    TweenListener() {}
+    TweenListener() {
+        m_inner = NULL;
+    }
     InnerBase * m_inner;
-    void clear() { m_inner->clear(); }
+    void clear() {
+        if(m_inner != NULL) m_inner->clear();
+    }
 };
 
 #endif

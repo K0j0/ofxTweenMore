@@ -74,7 +74,7 @@ typedef struct _tweenParams {
 	float duration;
 	float delay;
 	int easeType;
-	// I don't remember what these are for :/ 
+	// amplitude and period for certain easing functions (elastic, bounce and back)
 	float a;
 	float p;
 	
@@ -124,72 +124,6 @@ public:
     static Tween* getTween( ofRectangle *rect );
     
 	static Tween* getRecentTween();
-	
-	/*
-	// EVENTS, since POCO is weird //
-	template <class ListenerClass>
-	static void addCompleteListener( Tween* a_tween, ListenerClass* a_listener, void (ListenerClass::*a_listenerMethod)(float* args)) {
-		removeCompleteListener( a_tween );
-		TweenEvent completeEvent;
-		completeEvent = new TweenEvent::T<ListenerClass>(a_listener, a_listenerMethod);
-		// associate the IDs //
-		// can't use pointers, since when manipulating vector,
-		// the pointers change :(
-		completeEvent.setID( __instance->_eventIndex );
-		a_tween->eventID = __instance->_eventIndex;
-		__instance->_events.push_back( completeEvent );
-		//cout << "Tweenzor.h :: addCompleteListener : event id = " << __instance->_eventIndex << endl;
-		__instance->_eventIndex++;
-		// if somehow gets near its max, reset it //
-		if(__instance->_eventIndex > 0xffffffff - 2) {
-			__instance->_eventIndex = 0;
-		}
-	}
-    */
-    
-    
-    template <class ListenerClass>
-    static void addCompleteListener( Tween* a_tween, ListenerClass* a_listener, void (ListenerClass::*a_listenerMethod)()) {
-        removeCompleteListener( a_tween );
-        
-//        TweenEvent completeEvent;
-//        completeEvent = new TweenEvent::T<ListenerClass>(a_listener, a_listenerMethod);
-//        a_tween->event = completeEvent;
-        
-        // associate the IDs //
-        // can't use pointers, since when manipulating vector,
-        // the pointers change :(
-//        completeEvent.setID( __instance->_eventIndex );
-//        a_tween->eventID = __instance->_eventIndex;
-//        __instance->_eventIndex++;
-        
-        // if somehow gets near its max, reset it //
-        if(__instance->_eventIndex > 0xffffffff - 2) {
-            __instance->_eventIndex = 0;
-        }
-    }
-    
-    
-    template <class ListenerClass, typename P>
-    static void addCompleteListener( Tween* a_tween, ListenerClass* a_listener, void (ListenerClass::*a_listenerMethod)(P args), P p) {
-        removeCompleteListener( a_tween );
-        
-        TweenEvent completeEvent;
-        completeEvent = new TweenEvent::T<ListenerClass, P>(a_listener, a_listenerMethod, p);
-        a_tween->event = completeEvent;
-        
-        // associate the IDs //
-        // can't use pointers, since when manipulating vector,
-        // the pointers change :(
-        completeEvent.setID( __instance->_eventIndex );
-        a_tween->eventID = __instance->_eventIndex;
-        __instance->_eventIndex++;
-        
-        // if somehow gets near its max, reset it //
-        if(__instance->_eventIndex > 0xffffffff - 2) {
-            __instance->_eventIndex = 0;
-        }
-    }
     
 	
 	static void removeCompleteListener( Tween* a_tween );
@@ -200,16 +134,10 @@ public:
 
 protected:
 	Tweenzor() {};
-	static int getEventIndexForTween( Tween* a_tween );
-	static int getEventIDForTween( Tween* a_tween );
-	static int getEventIndexForID( int a_eventID );
 	
 private:
 	static Tweenzor* __instance;
-	vector <Tween *> _tweens;
-	vector<TweenEvent> _events;
-	
-	unsigned int _eventIndex;
+	vector <Tween *> _tweens;	
 	int _currMillis;
 };
 

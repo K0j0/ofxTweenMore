@@ -15,7 +15,6 @@ Tweenzor* Tweenzor::__instance = 0;
 Tweenzor* Tweenzor::Instance() {
 	if (__instance == 0) {
 		__instance = new Tweenzor();
-		__instance->_eventIndex = 0;
 		__instance->_currMillis = 0;
 		removeAllTweens();
 	}
@@ -31,28 +30,30 @@ void Tweenzor::init() {
 void Tweenzor::update(int a_millis) {
 	
 	__instance->_currMillis = a_millis;
-	
-	//cout << "Tweenzor :: update : size() = " << __instance->_tweens.size() << endl;
-	
-	int _twCount = 0;
-	vector<Tween *>::iterator it;
 		
-	// TODO, change to for loop and check for length changes in case a callback changes the size of tweens vector
+    // check for finished tweens then call their callbacks if they have any
+	// TODO, check for length changes in case a callback changes the size of tweens vector
     int len = __instance->_tweens.size();
     for(int i = 0; i < len; ++i){
         Tween * tween = __instance->_tweens[i];
         
 		if(tween->complete() && tween->hasListener) {
             (*(tween->listener.m_inner))();
+            
+            // callback has changed tweens vector, start over. Don't worry, callbacks will not be repeated
+            // TODO, maybe find more efficient way to do this?
+            if(len != __instance->_tweens.size()){
+                len = __instance->_tweens.size();
+                i = 0;
+            }
 		}
-		_twCount ++;
 	}
 	
+    // remove finished tweens from vector
 	if(__instance->_tweens.size() > 0) {
 		int _totesTweens = __instance->_tweens.size();
 		for(int i = _totesTweens-1; i >= 0; i--) {
 			if(__instance->_tweens[i]->complete()) {
-				//removeCompleteListener( &__instance->_tweens[i] );
                 switch(__instance->_tweens[i]->getTweenType()){
                     case Tween::FLOAT:
                         removeTween( __instance->_tweens[i]->getProperty() );
@@ -76,24 +77,11 @@ void Tweenzor::update(int a_millis) {
 			}
 		}
 	}
-//	
-//	for(unsigned int i = 0; i < eventsToFire.size(); i++) {
-//		//cout << "Tweenzor :: update : eventsToFire["<<eventsToFire[i] << "] arg = " << *eventArgs[i] << endl;
-//		//__instance->_events[eventsToFire[i]]( eventArgs[i] );
-//		int evindex = getEventIndexForID( eventsToFire[i] );
-////		__instance->_events[evindex]( eventArgs[i] );
-//        __instance->_events[evindex]( eventArgs[i] );
-//		removeCompleteListener( eventsToFire[i] );
-//	}
 	
-	_twCount = 0;
+    // Update remaining tweens
+    vector<Tween *>::iterator it;
 	for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
 		(*it)->update( __instance->_currMillis );
-        (*it)->getTweenType();
-		//if(it->complete()) {
-			//cout << "Tweenzor :: update : complete ["<<_twCount<<"]" << endl;
-		//}
-		_twCount++;
 	}
 	
 }
@@ -198,7 +186,7 @@ void Tweenzor::removeTween( float* a_property ) {
                 printed = true;
                 
 				//cout << "Tweenzor :: removeTween : property = " <<  it->getProperty() << " = " << a_property << endl;
-				(*it)->remove();
+				(*it)->stop();
                 delete *it;
 				__instance->_tweens.erase( it );
 				break;
@@ -276,43 +264,6 @@ Tween* Tweenzor::getTween(ofRectangle *rect) {
 }
 
 
-// protected //
-//--------------------------------------------------------------
-int Tweenzor::getEventIndexForTween( Tween* a_tween ) {
-	if(a_tween == NULL) return -1;
-	unsigned int evid = a_tween->eventID;
-	for(unsigned int i = 0; i < __instance->_events.size(); i++) {
-		if( (__instance->_events[i].getID()) == evid ) {
-			return i;
-			break;
-		}
-	}
-	return -1;
-}
-
-//--------------------------------------------------------------
-int Tweenzor::getEventIDForTween( Tween* a_tween ) {
-	if(a_tween == NULL) return -1;
-	unsigned int evid = a_tween->eventID;
-	for(unsigned int i = 0; i < __instance->_events.size(); i++) {
-		if( (__instance->_events[i].getID()) == evid ) {
-			return __instance->_events[i].getID();
-			break;
-		}
-	}
-	return -1;
-}
-
-//--------------------------------------------------------------
-int Tweenzor::getEventIndexForID( int a_eventID ) {
-	for(unsigned int i = 0; i < __instance->_events.size(); i++) {
-		if( (__instance->_events[i].getID()) == a_eventID ) {
-			return i;
-		}
-	}
-	return -1;
-}
-
 //--------------------------------------------------------------
 void Tweenzor::removeCompleteListener( Tween* a_tween ) {
 	if(a_tween == NULL) return;
@@ -353,14 +304,13 @@ void Tweenzor::removeAllListeners() {
 
 //--------------------------------------------------------------
 void Tweenzor::removeAllTweens() {
-	for(unsigned int i = 0; i < __instance->_events.size(); i++) {
-//		__instance->_events[i].destroy();
-//		__instance->_events[i] = NULL;
-	}
-	
-//	__instance->_events.clear();
+    int len = __instance->_tweens.size();
+    for(int i = 0; i < len; ++i){
+        Tween * tween = __instance->_tweens[i];
+        tween->stop();
+        delete tween;
+    }
 	__instance->_tweens.clear();
-	
 	cout << "Tweenzor :: removeAllTweens : " << __instance->_tweens.empty() << endl;
 }
 

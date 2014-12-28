@@ -32,6 +32,11 @@ Tween::Tween(float* a_property, int a_millis, float a_begin, float a_end, float 
 	_setup(a_property, a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a);
 }
 
+Tween::~Tween(){
+    ofLog() << "Destroying Tween " << name;
+    listener.clear();
+}
+
 //--------------------------------------------------------------
 void Tween::_setup(float* a_property, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a) {
     _tweenType = FLOAT;
@@ -106,6 +111,10 @@ void Tween::pause() {
 	cout << "Tween :: pause : running= " << _isRunning << endl;
 }
 
+void Tween::stop(){
+    _isRunning = false;
+}
+
 //--------------------------------------------------------------
 void Tween::reset(int a_millis) {
 	if (!_isComplete) {
@@ -121,42 +130,44 @@ void Tween::reset(int a_millis) {
 
 //--------------------------------------------------------------
 void Tween::update(int a_millis) {
+    // Don't update at all if paused or stopped. This way it cannot complete if paused or stopped
+    if(_isRunning){
 	//cout << "Tween :: update : time= " << _time << " duration+delay= " << _duration + _delay << " running: " << running() << " complete: " << complete() << endl;
-	
-	if (_useSeconds) {
-		if (_isRunning) _time = (float) a_millis - _startTime;
-	}
-	
-	if (_time <= _duration + _delay) {
-		//cout << "Tween :: update : time= " << _time << " duration+delay= " << _duration + _delay << " running: " << running() << endl;
-		if (_isRunning) {
-			if (_time >= _delay) {
-				updateProperty();
-			}
-			if (!_useSeconds) _time += 1.f;
-		}
-	} else {
-		// no events in ofxiPhone right now :( well, maybe now there is. :/
-		//ofNotifyEvent(ON_COMPLETE, _event, this);
-		
-		bool bTweenIsComplete = false;
-		// lets check on the repeat //
-		if(_repeatTotal == 0) {
-			bTweenIsComplete = true;
-		} else if(_repeatCount >= _repeatTotal) {
-			bTweenIsComplete = true;
-		} else {
-			_repeatCount++;
-		}
-		if (_repeatTotal == -1) { // run forever //
-			bTweenIsComplete = false;
-		}
-		
-		//cout << "Tween :: update : bTweenIsComplete= " << bTweenIsComplete << " _repeatCount= " << _repeatCount << endl;
-		
-        updateComplete(bTweenIsComplete, a_millis);
-		
-	}
+        if (_useSeconds) {
+            if (_isRunning) _time = (float) a_millis - _startTime;
+        }
+        
+        if (_time <= _duration + _delay) {
+            //cout << "Tween :: update : time= " << _time << " duration+delay= " << _duration + _delay << " running: " << running() << endl;
+            if (_isRunning) {
+                if (_time >= _delay) {
+                    updateProperty();
+                }
+                if (!_useSeconds) _time += 1.f;
+            }
+        } else {
+            // no events in ofxiPhone right now :( well, maybe now there is. :/
+            //ofNotifyEvent(ON_COMPLETE, _event, this);
+            
+            bool bTweenIsComplete = false;
+            // lets check on the repeat //
+            if(_repeatTotal == 0) {
+                bTweenIsComplete = true;
+            } else if(_repeatCount >= _repeatTotal) {
+                bTweenIsComplete = true;
+            } else {
+                _repeatCount++;
+            }
+            if (_repeatTotal == -1) { // run forever //
+                bTweenIsComplete = false;
+            }
+            
+            //cout << "Tween :: update : bTweenIsComplete= " << bTweenIsComplete << " _repeatCount= " << _repeatCount << endl;
+            
+            updateComplete(bTweenIsComplete, a_millis);
+            
+        }
+    }
 }
 
 void Tween::updateComplete(bool bTweenIsComplete, int a_millis){
