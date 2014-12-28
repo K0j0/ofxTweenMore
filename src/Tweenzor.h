@@ -15,6 +15,7 @@
 #include "Tween.h"
 #include "TweenVec2.h"
 #include "TweenEvent.h"
+#include "TweenEvent2.h"
 
 typedef struct _tweenParams {
 	_tweenParams() {
@@ -124,7 +125,7 @@ public:
     
 	static Tween* getRecentTween();
 	
-	
+	/*
 	// EVENTS, since POCO is weird //
 	template <class ListenerClass>
 	static void addCompleteListener( Tween* a_tween, ListenerClass* a_listener, void (ListenerClass::*a_listenerMethod)(float* args)) {
@@ -144,6 +145,26 @@ public:
 			__instance->_eventIndex = 0;
 		}
 	}
+    */
+    
+    template <class ListenerClass, typename P>
+    static void addCompleteListener( Tween* a_tween, ListenerClass* a_listener, void (ListenerClass::*a_listenerMethod)(P args)) {
+        removeCompleteListener( a_tween );
+        TweenEvent completeEvent;
+        completeEvent = new TweenEvent::T<ListenerClass>(a_listener, a_listenerMethod);
+        // associate the IDs //
+        // can't use pointers, since when manipulating vector,
+        // the pointers change :(
+        completeEvent.setID( __instance->_eventIndex );
+        a_tween->eventID = __instance->_eventIndex;
+        __instance->_events.push_back( completeEvent );
+        //cout << "Tweenzor.h :: addCompleteListener : event id = " << __instance->_eventIndex << endl;
+        __instance->_eventIndex++;
+        // if somehow gets near its max, reset it //
+        if(__instance->_eventIndex > 0xffffffff - 2) {
+            __instance->_eventIndex = 0;
+        }
+    }
     
 	
 	static void removeCompleteListener( Tween* a_tween );

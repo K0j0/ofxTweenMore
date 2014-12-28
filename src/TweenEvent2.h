@@ -72,7 +72,6 @@ public:
         //cout << "deleting pointerino _assigned = " << _assigned << endl;
     }
     
-    
     TweenEvent2& operator = (Base* aPtr) {
         pointerino = aPtr;
         _assigned = true;

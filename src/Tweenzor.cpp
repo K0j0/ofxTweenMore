@@ -91,7 +91,8 @@ void Tweenzor::update(int a_millis) {
 		//cout << "Tweenzor :: update : eventsToFire["<<eventsToFire[i] << "] arg = " << *eventArgs[i] << endl;
 		//__instance->_events[eventsToFire[i]]( eventArgs[i] );
 		int evindex = getEventIndexForID( eventsToFire[i] );
-		__instance->_events[evindex]( eventArgs[i] );
+//		__instance->_events[evindex]( eventArgs[i] );
+        __instance->_events[evindex]( eventArgs[i] );
 		removeCompleteListener( eventsToFire[i] );
 	}
 	
