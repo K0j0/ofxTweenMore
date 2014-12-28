@@ -14,6 +14,7 @@
 #include "ofMain.h"
 #include "TweenSelector.h"
 #include "TweenEvent.h"
+#include "TweenListener.h"
 
 class Tween {
 public:
@@ -58,6 +59,20 @@ public:
 	
 	unsigned int eventID;
     TweenEvent event;
+    TweenListener listener;
+    
+    void fooFunc() { ofLog() << "fooFunc called"; }
+    void fooFunc2(string arg) { ofLog() << "fooFunc2 with arg " << arg; }
+    
+    template<class inClass, typename Param>
+    void addListener(inClass * target, void (inClass::*callback)(Param p), Param p){
+        listener.m_inner = new TweenListener::InnerTL2<inClass, Param>(this, callback, p);
+    }
+    
+    void callListener(){
+        (*(listener.m_inner))();
+        
+    }
 	
 	
 protected:

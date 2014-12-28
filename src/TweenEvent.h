@@ -85,12 +85,22 @@ public:
 		return _assigned;
 	}
 	
+    
 	void operator()(float* args) {
 		if (pointerino) {
 			//cout << "TweenEvent :: operator args = " << *args << "  _assigned = " << _assigned << endl;
 			(*pointerino)(args);
 		}
 	}
+    
+    
+    template<typename Q, typename R>
+    void operator()(Q args) {
+        if (pointerino) {
+            //cout << "TweenEvent :: operator args = " << *args << "  _assigned = " << _assigned << endl;
+            static_cast<T<Q, R> >(*pointerino)(args);
+        }
+    }
 	
 };	
 

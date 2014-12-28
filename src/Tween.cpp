@@ -63,6 +63,48 @@ void Tween::_setup(float* a_property, float a_begin, float a_end, float a_delay,
 	_isComplete = false;
 	
 	eventID		= -1;
+    
+    
+    // won't work when InnerBase is abstract or private
+//    TweenListener::InnerBase foo;
+//    foo();
+    
+//    TweenListener::InnerBase * buz;
+//    (*buz)();
+    
+
+    // nothing would happen here
+//    listener.m_inner = new TweenListener::InnerTL<Tween>();
+//    listener.m_inner->operator()();
+    
+//    TweenListener::InnerTL<Tween> * bar = static_cast<TweenListener::InnerTL<Tween> *>(listener.m_inner);
+//    bar->operator()();
+//    (*bar)();
+
+    // this works
+//    listener.m_inner = new TweenListener::InnerTL<Tween>(this, &Tween::fooFunc);
+//    (*(listener.m_inner))();
+    
+    
+    
+    //////// this works
+    /*
+    float * h = new float;
+    *h = 1.3f;
+    listener.m_inner = new TweenListener::InnerTL2<Tween, float *>(this, &Tween::fooFunc2, h);
+    (*(listener.m_inner))();
+     */
+    
+//    float * h = new float;
+//    *h = 1.3f;
+    
+//    int h = 589;
+    
+    string h = "hi";
+    
+    addListener(this, &Tween::fooFunc2, h);
+    
+    callListener();
 }
 
 //--------------------------------------------------------------
@@ -112,7 +154,6 @@ void Tween::reset(int a_millis) {
 
 //--------------------------------------------------------------
 void Tween::update(int a_millis) {
-    ofLog() << this << " EventID: " << eventID;
 	//cout << "Tween :: update : time= " << _time << " duration+delay= " << _duration + _delay << " running: " << running() << " complete: " << complete() << endl;
 	
 	if (_useSeconds) {

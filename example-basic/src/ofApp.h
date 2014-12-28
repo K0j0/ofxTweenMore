@@ -27,4 +27,5 @@ public:
 	bool paused;
 	
 	void onComplete(float* arg);
+    void tweenCallback();
 };

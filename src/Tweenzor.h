@@ -15,6 +15,7 @@
 #include "Tween.h"
 #include "TweenVec2.h"
 #include "TweenEvent.h"
+#include "TweenListener.h"
 
 typedef struct _tweenParams {
 	_tweenParams() {
@@ -146,31 +147,33 @@ public:
 	}
     */
     
-    /*
+    
     template <class ListenerClass>
     static void addCompleteListener( Tween* a_tween, ListenerClass* a_listener, void (ListenerClass::*a_listenerMethod)()) {
         removeCompleteListener( a_tween );
-        TweenEvent completeEvent;
-        completeEvent = new TweenEvent::T<ListenerClass>(a_listener, a_listenerMethod);
-        a_tween->event = completeEvent;
+        
+//        TweenEvent completeEvent;
+//        completeEvent = new TweenEvent::T<ListenerClass>(a_listener, a_listenerMethod);
+//        a_tween->event = completeEvent;
         
         // associate the IDs //
         // can't use pointers, since when manipulating vector,
         // the pointers change :(
-        completeEvent.setID( __instance->_eventIndex );
-        a_tween->eventID = __instance->_eventIndex;
-        __instance->_eventIndex++;
+//        completeEvent.setID( __instance->_eventIndex );
+//        a_tween->eventID = __instance->_eventIndex;
+//        __instance->_eventIndex++;
         
         // if somehow gets near its max, reset it //
         if(__instance->_eventIndex > 0xffffffff - 2) {
             __instance->_eventIndex = 0;
         }
     }
-    */
+    
     
     template <class ListenerClass, typename P>
     static void addCompleteListener( Tween* a_tween, ListenerClass* a_listener, void (ListenerClass::*a_listenerMethod)(P args), P p) {
         removeCompleteListener( a_tween );
+        
         TweenEvent completeEvent;
         completeEvent = new TweenEvent::T<ListenerClass, P>(a_listener, a_listenerMethod, p);
         a_tween->event = completeEvent;

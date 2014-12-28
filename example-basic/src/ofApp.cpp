@@ -44,7 +44,7 @@ void ofApp::setup() {
 //    Tweenzor::getTween( &pos1 )->setRepeat( 1, true );
 	// let's add a listener so we know when this tween is done //
 	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete, &_x1);
-
+    Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::tweenCallback);
 }
 
 //--------------------------------------------------------------
@@ -83,6 +83,10 @@ void ofApp::onComplete(float* arg) {
 	
 	
 	
+}
+
+void ofApp::tweenCallback(){
+    ofLog() << "tweenCallback() called";
 }
 
 //--------------------------------------------------------------
