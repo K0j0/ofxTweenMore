@@ -24,7 +24,7 @@ void ofApp::setup() {
     pos1 = ofVec2f(200, 50);
 	
 	
-	Tweenzor::add(&_x1, 200.f, 900.f, 0.f, 2.f);
+	Tweenzor::add(&_x1, 200.f, 900.f, 0.f, 2.f).name = "x1";
 //    Tweenzor::add(&pos1, ofVec2f(200, 50), ofVec2f(900, 50), 0.f, 1.f);
     
 	
@@ -41,10 +41,14 @@ void ofApp::setup() {
 	// and then repeat begin value -> end value
 	
 	Tweenzor::getTween( &_x1 )->setRepeat( 1, true );
+    
+//    Tweenzor::getTween( &_x1 )->addListener(this, &ofApp::tweenCallback);
+    Tweenzor::getTween( &_x1 )->addListener(this, &ofApp::onComplete, &_x1);
+    
 //    Tweenzor::getTween( &pos1 )->setRepeat( 1, true );
 	// let's add a listener so we know when this tween is done //
-	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete, &_x1);
-    Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::tweenCallback);
+//	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete, &_x1);
+//    Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::tweenCallback);
 }
 
 //--------------------------------------------------------------
@@ -65,21 +69,22 @@ void ofApp::onComplete(float* arg) {
 	}
 	
 	
-	Tweenzor::add( &_x1, _begin, _tarX, 0.f, 2.f );
+	Tweenzor::add( &_x1, _begin, _tarX, 0.f, 2.f ).name = "x1";
 	
 	// add the complete listener again so that it will fire again, creating a loop //
-	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete, &_x1);
+//	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete, &_x1);
+    Tweenzor::getTween( &_x1 )->addListener(this, &ofApp::onComplete, &_x1);
 	
-	Tweenzor::add(&_x2, _x2, _tarX, 0.f, 2.f, EASE_IN_OUT_SINE);
-	Tweenzor::add(&_x3, _x3, _tarX, 0.f, 2.f, EASE_IN_OUT_QUAD);
+	Tweenzor::add(&_x2, _x2, _tarX, 0.f, 2.f, EASE_IN_OUT_SINE).name = "x2";
+	Tweenzor::add(&_x3, _x3, _tarX, 0.f, 2.f, EASE_IN_OUT_QUAD).name = "x3";
 	
-	Tweenzor::add( &_x4, _x4, _tarX, 0.f, 2.f, EASE_IN_OUT_QUART );
-	Tweenzor::add( &_x5, _x5, _tarX, 0.f, 2.f, EASE_IN_OUT_CUBIC );
-	Tweenzor::add( &_x6, _x6, _tarX, 0.f, 2.f, EASE_IN_OUT_QUINT );
-	Tweenzor::add( &_x7, _x7, _tarX, 0.f, 2.f, EASE_IN_OUT_CIRC );
-	Tweenzor::add( &_x8, _x8, _tarX, 0.f, 2.f, EASE_IN_OUT_ELASTIC );
-	Tweenzor::add( &_x9, _x9, _tarX, 0.f, 2.f, EASE_IN_OUT_BACK );
-	Tweenzor::add( &_x10, _x10, _tarX, 0.f, 2.f, EASE_IN_OUT_BOUNCE );
+	Tweenzor::add( &_x4, _x4, _tarX, 0.f, 2.f, EASE_IN_OUT_QUART ).name = "x4";
+	Tweenzor::add( &_x5, _x5, _tarX, 0.f, 2.f, EASE_IN_OUT_CUBIC ).name = "x5";
+	Tweenzor::add( &_x6, _x6, _tarX, 0.f, 2.f, EASE_IN_OUT_QUINT ).name = "x6";
+	Tweenzor::add( &_x7, _x7, _tarX, 0.f, 2.f, EASE_IN_OUT_CIRC ).name = "x7";
+	Tweenzor::add( &_x8, _x8, _tarX, 0.f, 2.f, EASE_IN_OUT_ELASTIC ).name = "x8";
+	Tweenzor::add( &_x9, _x9, _tarX, 0.f, 2.f, EASE_IN_OUT_BACK ).name = "x9";
+	Tweenzor::add( &_x10, _x10, _tarX, 0.f, 2.f, EASE_IN_OUT_BOUNCE ).name = "x10";
 	
 	
 	

@@ -32,8 +32,9 @@ public:
 	Tween(float* a_property, float a_begin, float a_end, int a_delay, int a_duration, int a_easeType, float a_p=0, float a_a=0);
 	Tween(float* a_property, int a_millis, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType, float a_p=0, float a_a=0);
     
-    virtual ~Tween() { ofLog() << "Destroying Tween"; }
+    virtual ~Tween() { ofLog() << "Destroying Tween " << name; }
 	
+    string name;
     void update(int a_millis);
     virtual void updateComplete(bool isComplete, int a_millis); // run when duration and delay have passed
     
@@ -59,6 +60,8 @@ public:
 	
 	unsigned int eventID;
     TweenEvent event;
+    
+    bool hasListener;
     TweenListener listener;
     
     void fooFunc() { ofLog() << "fooFunc called"; }
@@ -66,15 +69,18 @@ public:
     
     template<class inClass>
     void addListener(inClass * target, void (inClass::*callback)()){
-        listener.m_inner = new TweenListener::InnerTL<inClass>(this, callback);
+        hasListener = true;
+        listener.m_inner = new TweenListener::InnerTL<inClass>(target, callback);
     }
     
     template<class inClass, typename Param>
     void addListener(inClass * target, void (inClass::*callback)(Param p), Param p){
-        listener.m_inner = new TweenListener::InnerTL2<inClass, Param>(this, callback, p);
+        hasListener = true;
+        listener.m_inner = new TweenListener::InnerTL2<inClass, Param>(target, callback, p);
     }
     
     void callListener(){
+        hasListener = false;
         (*(listener.m_inner))();
         listener.clear();
     }
