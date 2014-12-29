@@ -30,6 +30,8 @@
 		E80F019C1A4E8FD800F4ED26 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F01951A4E8FD800F4ED26 /* Tween.cpp */; };
 		E80F019D1A4E8FD800F4ED26 /* Tweenzor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F019A1A4E8FD800F4ED26 /* Tweenzor.cpp */; };
 		E80F019F1A4E93D300F4ED26 /* TweenVec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F019E1A4E93D300F4ED26 /* TweenVec2.cpp */; };
+		E80F01A51A50F97E00F4ED26 /* TweenVec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F01A41A50F97D00F4ED26 /* TweenVec3.cpp */; };
+		E80F01A71A50F98A00F4ED26 /* TweenVec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F01A61A50F98A00F4ED26 /* TweenVec4.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,10 @@
 		E80F019E1A4E93D300F4ED26 /* TweenVec2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TweenVec2.cpp; sourceTree = "<group>"; };
 		E80F01A01A4E93F800F4ED26 /* TweenVec2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenVec2.h; sourceTree = "<group>"; };
 		E80F01A11A4F5AAF00F4ED26 /* TweenListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenListener.h; sourceTree = "<group>"; };
+		E80F01A21A50F7C400F4ED26 /* TweenVec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenVec3.h; sourceTree = "<group>"; };
+		E80F01A31A50F80E00F4ED26 /* TweenVec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenVec4.h; sourceTree = "<group>"; };
+		E80F01A41A50F97D00F4ED26 /* TweenVec3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TweenVec3.cpp; sourceTree = "<group>"; };
+		E80F01A61A50F98A00F4ED26 /* TweenVec4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TweenVec4.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,8 +223,12 @@
 				E80F01991A4E8FD800F4ED26 /* TweenSelector.h */,
 				E80F019A1A4E8FD800F4ED26 /* Tweenzor.cpp */,
 				E80F019B1A4E8FD800F4ED26 /* Tweenzor.h */,
+				E80F01A31A50F80E00F4ED26 /* TweenVec4.h */,
 				E80F019E1A4E93D300F4ED26 /* TweenVec2.cpp */,
+				E80F01A41A50F97D00F4ED26 /* TweenVec3.cpp */,
+				E80F01A61A50F98A00F4ED26 /* TweenVec4.cpp */,
 				E80F01A01A4E93F800F4ED26 /* TweenVec2.h */,
+				E80F01A21A50F7C400F4ED26 /* TweenVec3.h */,
 			);
 			name = ofxTweenMore;
 			path = ../src;
@@ -311,6 +321,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E80F01A71A50F98A00F4ED26 /* TweenVec4.cpp in Sources */,
+				E80F01A51A50F97E00F4ED26 /* TweenVec3.cpp in Sources */,
 				E80F019C1A4E8FD800F4ED26 /* Tween.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,

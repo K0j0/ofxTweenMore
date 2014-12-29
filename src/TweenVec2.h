@@ -1,11 +1,4 @@
-/*
- *  Tween.h
- *  openFrameworks
- *
- *  Created by Nick Hardeman on 10/20/09.
- *  Copyright 2009 __MyCompanyName__. All rights reserved.
- *
- */
+
 
 #ifndef _TWEENVEC2_
 #define _TWEENVEC2_

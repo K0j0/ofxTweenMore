@@ -14,6 +14,8 @@
 #include "ofVec2f.h"
 #include "Tween.h"
 #include "TweenVec2.h"
+#include "TweenVec3.h"
+#include "TweenVec4.h"
 #include "TweenListener.h"
 
 typedef struct _tweenParams {
@@ -98,16 +100,20 @@ public:
     static TweenVec2& framesAdd(ofVec2f* a_vec, const ofVec2f& v_begin, const ofVec2f& v_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
     // ofVec3f
-    static void add(ofVec3f* a_vec, const ofVec3f& v_begin, const ofVec3f& v_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    static TweenVec3& add(ofVec3f* a_vec, const ofVec3f& v_begin, const ofVec3f& v_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    static TweenVec3& framesAdd(ofVec3f* a_vec, const ofVec3f& v_begin, const ofVec3f& v_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
     // ofVec4f
-    static void add(ofVec4f* a_vec, const ofVec4f& v_begin, const ofVec4f& v_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    static TweenVec4& add(ofVec4f* a_vec, const ofVec4f& v_begin, const ofVec4f& v_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    static TweenVec4& framesAdd(ofVec4f* a_vec, const ofVec4f& v_begin, const ofVec4f& v_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
     // ofRectangle
     static void add(ofRectangle* a_rect, const ofRectangle& r_begin, const ofRectangle& r_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    static void framesAdd(ofRectangle* a_rect, const ofRectangle& r_begin, const ofRectangle& r_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
     // ofFloatColor
     static void add(ofFloatColor* a_color, const ofFloatColor& c_begin, const ofFloatColor& c_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    static void framesAdd(ofFloatColor* a_color, const ofFloatColor& c_begin, const ofFloatColor& c_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
 	// I never use these. Decide whether or not to keep them
     static void add(vector <float *> a_properties, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
@@ -118,6 +124,8 @@ public:
     static void removeTween(Tween * tween);
 	static void removeTween(float * a_property);
     static void removeTween(ofVec2f * a_property);
+    static void removeTween(ofVec3f * a_property);
+    static void removeTween(ofVec4f * a_property);
     static void removeAllTweens();
 	
 	static void destroy();
@@ -142,6 +150,8 @@ public:
 	static void removeCompleteListener( Tween* a_tween );
 	static void removeCompleteListener( float* a_property );
     static void removeCompleteListener( ofVec2f * a_property );
+    static void removeCompleteListener( ofVec3f * a_property );
+    static void removeCompleteListener( ofVec4f * a_property );
 	static void removeAllListeners();
 	
 

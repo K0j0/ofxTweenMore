@@ -125,11 +125,36 @@ TweenVec2& Tweenzor::framesAdd(ofVec2f* a_vec, const ofVec2f& v_begin, const ofV
 
 // ofVec3f
 //--------------------------------------------------------------
+TweenVec3& Tweenzor::add(ofVec3f *a_vec, const ofVec3f &c_begin, const ofVec3f &c_end, float a_delay, float a_duration, int a_easetype, float a_p, float a_a) {
+    removeTween(a_vec);
+    TweenVec3 * tweenzlebob = new TweenVec3( a_vec, __instance->_currMillis, c_begin, c_end, a_delay, a_duration, a_easetype, a_p, a_a );
+    __instance->_tweens.push_back( tweenzlebob );
+    return *tweenzlebob;
+}
+
+TweenVec3& Tweenzor::framesAdd(ofVec3f* a_vec, const ofVec3f& v_begin, const ofVec3f& v_end, int a_delay, int a_duration, int a_easeType, float a_p, float a_a){
+    removeTween(a_vec);
+    TweenVec3 * tweenzlebob = new TweenVec3( a_vec, __instance->_currMillis, v_begin, v_end, a_delay, a_duration, a_easeType, a_p, a_a );
+    __instance->_tweens.push_back( tweenzlebob );
+    return *tweenzlebob;
+}
 
 
 // ofVec4f
 //--------------------------------------------------------------
+TweenVec4& Tweenzor::add(ofVec4f *a_vec, const ofVec4f &c_begin, const ofVec4f &c_end, float a_delay, float a_duration, int a_easetype, float a_p, float a_a) {
+    removeTween(a_vec);
+    TweenVec4 * tweenzlebob = new TweenVec4( a_vec, __instance->_currMillis, c_begin, c_end, a_delay, a_duration, a_easetype, a_p, a_a );
+    __instance->_tweens.push_back( tweenzlebob );
+    return *tweenzlebob;
+}
 
+TweenVec4& Tweenzor::framesAdd(ofVec4f* a_vec, const ofVec4f& v_begin, const ofVec4f& v_end, int a_delay, int a_duration, int a_easeType, float a_p, float a_a){
+    removeTween(a_vec);
+    TweenVec4 * tweenzlebob = new TweenVec4( a_vec, __instance->_currMillis, v_begin, v_end, a_delay, a_duration, a_easeType, a_p, a_a );
+    __instance->_tweens.push_back( tweenzlebob );
+    return *tweenzlebob;
+}
 
 // ofRectangle
 //--------------------------------------------------------------
@@ -145,18 +170,6 @@ void Tweenzor::add(ofFloatColor *a_color, const ofFloatColor &c_begin, const ofF
     add(&a_color->g, c_begin.g, c_end.g, a_delay, a_duration, a_easetype, a_p, a_a);
     add(&a_color->b, c_begin.b, c_end.b, a_delay, a_duration, a_easetype, a_p, a_a);
     add(&a_color->a, c_begin.a, c_end.a, a_delay, a_duration, a_easetype, a_p, a_a);
-}
-
-void Tweenzor::add(ofVec3f *a_vec, const ofVec3f &c_begin, const ofVec3f &c_end, float a_delay, float a_duration, int a_easetype, float a_p, float a_a) {
-    add(&a_vec->x, c_begin.x, c_end.x, a_delay, a_duration, a_easetype, a_p, a_a);
-    add(&a_vec->y, c_begin.y, c_end.y, a_delay, a_duration, a_easetype, a_p, a_a);
-    add(&a_vec->z, c_begin.z, c_end.z, a_delay, a_duration, a_easetype, a_p, a_a);
-}
-void Tweenzor::add(ofVec4f *a_vec, const ofVec4f &c_begin, const ofVec4f &c_end, float a_delay, float a_duration, int a_easetype, float a_p, float a_a) {
-    add(&a_vec->x, c_begin.x, c_end.x, a_delay, a_duration, a_easetype, a_p, a_a);
-    add(&a_vec->y, c_begin.y, c_end.y, a_delay, a_duration, a_easetype, a_p, a_a);
-    add(&a_vec->z, c_begin.z, c_end.z, a_delay, a_duration, a_easetype, a_p, a_a);
-    add(&a_vec->w, c_begin.w, c_end.w, a_delay, a_duration, a_easetype, a_p, a_a);
 }
 
 void Tweenzor::add(ofRectangle* a_rect, const ofRectangle& r_begin, const ofRectangle& r_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a) {
@@ -241,6 +254,13 @@ void Tweenzor::removeCompleteListener( ofVec2f * a_property ) {
     removeCompleteListener( getTween(a_property) );
 }
 
+void Tweenzor::removeCompleteListener( ofVec3f * a_property ) {
+    removeCompleteListener( getTween(a_property) );
+}
+
+void Tweenzor::removeCompleteListener( ofVec4f * a_property ) {
+    removeCompleteListener( getTween(a_property) );
+}
 
 void Tweenzor::removeAllListeners() {
     int len = __instance->_tweens.size();
@@ -292,6 +312,44 @@ void Tweenzor::removeTween( ofVec2f * a_property ) {
             i++;
         }
     }
+}
+
+void Tweenzor::removeTween( ofVec3f * a_property ) {
+//    if (__instance->_tweens.size() > 0) {
+//        int i = 0;
+//        vector<Tween *>::iterator it;
+//        for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
+//            if((*it)->getTweenType() == TweenVec2::VEC2){
+//                if (static_cast<TweenVec2 *>(*it)->getProperty() == a_property ) {
+//                    //cout << "Tweenzor :: removeTween : property = " <<  it->getProperty() << " = " << a_property << endl;
+//                    (*it)->remove();
+//                    delete *it;
+//                    __instance->_tweens.erase( it );
+//                    break;
+//                }
+//            }
+//            i++;
+//        }
+//    }
+}
+
+void Tweenzor::removeTween( ofVec4f * a_property ) {
+//    if (__instance->_tweens.size() > 0) {
+//        int i = 0;
+//        vector<Tween *>::iterator it;
+//        for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
+//            if((*it)->getTweenType() == TweenVec2::VEC2){
+//                if (static_cast<TweenVec2 *>(*it)->getProperty() == a_property ) {
+//                    //cout << "Tweenzor :: removeTween : property = " <<  it->getProperty() << " = " << a_property << endl;
+//                    (*it)->remove();
+//                    delete *it;
+//                    __instance->_tweens.erase( it );
+//                    break;
+//                }
+//            }
+//            i++;
+//        }
+//    }
 }
 
 void Tweenzor::removeAllTweens() {
