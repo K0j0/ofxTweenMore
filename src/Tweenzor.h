@@ -18,71 +18,6 @@
 #include "TweenVec4.h"
 #include "TweenListener.h"
 
-typedef struct _tweenParams {
-	_tweenParams() {
-		bUseSeconds = true;
-		duration	= 1.f;
-		delay		= 0.f;
-	}
-	
-	// params for a tween using frames //
-	_tweenParams( float* a_property, float a_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR) {
-		bUseSeconds = false;
-		setup( a_property, *a_property, a_end, a_delay, a_duration, a_easeType );
-	}
-	_tweenParams( float* a_property, float a_begin, float a_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0) {
-		bUseSeconds = false;
-		setup( a_property, a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a );
-	}
-	
-	
-	// params for seconds based tween //
-	_tweenParams( float* a_property, float a_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR ) {
-		bUseSeconds = true;
-		setup( a_property, *a_property, a_end, a_delay, a_duration, a_easeType );
-	}
-	_tweenParams( float* a_property, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0 ) {
-		bUseSeconds = true;
-		setup( a_property, a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a );
-	}
-	// setup in frame //
-	void setup( float* a_property, float a_begin, float a_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0 ) {
-		property	= a_property;
-		begin		= a_begin;
-		end			= a_end;
-		delay		= a_delay;
-		duration	= a_duration;
-		easeType	= a_easeType;
-		p			= a_p;
-		a			= a_a;
-		bUseSeconds	= false;
-	}
-	// setup in seconds //
-	void setup( float* a_property, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0 ) {
-		property	= a_property;
-		begin		= a_begin;
-		end			= a_end;
-		delay		= a_delay;
-		duration	= a_duration;
-		easeType	= a_easeType;
-		p			= a_p;
-		a			= a_a;
-		bUseSeconds	= true;
-	}
-	
-	float *property;
-	float begin, end;
-	float duration;
-	float delay;
-	int easeType;
-	// amplitude and period for certain easing functions (elastic, bounce and back)
-	float a;
-	float p;
-	
-	bool bUseSeconds;
-} TweenParams;
-
-
 
 class Tweenzor {
 public:
@@ -114,12 +49,6 @@ public:
     // ofFloatColor
     static void add(ofFloatColor* a_color, const ofFloatColor& c_begin, const ofFloatColor& c_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     static void framesAdd(ofFloatColor* a_color, const ofFloatColor& c_begin, const ofFloatColor& c_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
-    
-	// I never use these. Decide whether or not to keep them
-    static void add(vector <float *> a_properties, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
-	static void add( TweenParams& a_params );
-	static void add( vector<TweenParams>& a_params );
-    
     
     static void removeTween(Tween * tween);
 	static void removeTween(float * a_property);

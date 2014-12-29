@@ -181,29 +181,6 @@ void Tweenzor::add(ofRectangle* a_rect, const ofRectangle& r_begin, const ofRect
 }
 
 //--------------------------------------------------------------
-
-// TODO, Decide whether or not to keep these
-void Tweenzor::add(vector <float *> a_properties, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a) {
-    for (unsigned int i = 0; i < a_properties.size(); i++) {
-        add(a_properties[i], a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a);
-    }
-}
-
-void Tweenzor::add( TweenParams& a_params ) {
-	if(a_params.bUseSeconds) {
-		add(a_params.property, a_params.begin, a_params.end, a_params.delay, a_params.duration, a_params.easeType, a_params.p, a_params.a);
-	} else {
-		add(a_params.property, a_params.begin, a_params.end, (int)a_params.delay, (int)a_params.duration, a_params.easeType, a_params.p, a_params.a);
-	}
-}
-
-void Tweenzor::add( vector<TweenParams>& a_params ) {
-	for(unsigned int i = 0; i < a_params.size(); i++) {
-		add( a_params[i] );
-	}
-}
-
-//--------------------------------------------------------------
 Tween* Tweenzor::getTween( float* a_property ) {
     int len = __instance->_tweens.size();
     for(int i = 0; i < len; ++i){
