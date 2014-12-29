@@ -90,17 +90,8 @@ void Tweenzor::update(int a_millis) {
 
 
 // float
-// add a tween that uses frames as time //
 //--------------------------------------------------------------
-Tween& Tweenzor::framesAdd(float* a_property, float a_begin, float a_end, int a_delay, int a_duration, int a_easeType, float a_p, float a_a) {
-	removeTween( a_property ); // remove tween for this property if one already exists
-	Tween * tweenzlebob = new Tween( a_property, __instance->_currMillis, a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a );
-	__instance->_tweens.push_back( tweenzlebob );
-    return *tweenzlebob;
-}
-
 // add a tween in seconds, pass in float for delay and duration //
-//--------------------------------------------------------------
 Tween& Tweenzor::add(float* a_property, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a) {
 	removeTween( a_property ); // remove tween for this property if one already exists
 	Tween * tweenzlebob = new Tween( a_property, __instance->_currMillis, a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a );
@@ -108,8 +99,16 @@ Tween& Tweenzor::add(float* a_property, float a_begin, float a_end, float a_dela
     return *tweenzlebob;
 }
 
+// add a tween that uses frames as time //
+Tween& Tweenzor::framesAdd(float* a_property, float a_begin, float a_end, int a_delay, int a_duration, int a_easeType, float a_p, float a_a) {
+    removeTween( a_property ); // remove tween for this property if one already exists
+    Tween * tweenzlebob = new Tween( a_property, __instance->_currMillis, a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a );
+    __instance->_tweens.push_back( tweenzlebob );
+    return *tweenzlebob;
+}
 
 // ofVec2f
+//--------------------------------------------------------------
 TweenVec2& Tweenzor::add(ofVec2f *a_vec, const ofVec2f &c_begin, const ofVec2f &c_end, float a_delay, float a_duration, int a_easetype, float a_p, float a_a) {
     removeTween(a_vec);
     TweenVec2 * tweenzlebob = new TweenVec2( a_vec, __instance->_currMillis, c_begin, c_end, a_delay, a_duration, a_easetype, a_p, a_a );
@@ -117,12 +116,27 @@ TweenVec2& Tweenzor::add(ofVec2f *a_vec, const ofVec2f &c_begin, const ofVec2f &
     return *tweenzlebob;
 }
 
-TweenVec2& Tweenzor::add(ofVec2f* a_vec, const ofVec2f& v_begin, const ofVec2f& v_end, int a_delay, int a_duration, int a_easeType, float a_p, float a_a){
+TweenVec2& Tweenzor::framesAdd(ofVec2f* a_vec, const ofVec2f& v_begin, const ofVec2f& v_end, int a_delay, int a_duration, int a_easeType, float a_p, float a_a){
     removeTween(a_vec);
     TweenVec2 * tweenzlebob = new TweenVec2( a_vec, __instance->_currMillis, v_begin, v_end, a_delay, a_duration, a_easeType, a_p, a_a );
     __instance->_tweens.push_back( tweenzlebob );
     return *tweenzlebob;
 }
+
+// ofVec3f
+//--------------------------------------------------------------
+
+
+// ofVec4f
+//--------------------------------------------------------------
+
+
+// ofRectangle
+//--------------------------------------------------------------
+
+
+// ofFloatColor
+//--------------------------------------------------------------
 
 
 //--------------------------------------------------------------

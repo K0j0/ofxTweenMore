@@ -60,8 +60,6 @@ void TweenVec2::_setup(ofVec2f * a_property, ofVec2f a_begin, ofVec2f a_end, flo
     
     _isRunning	= true;
     _isComplete = false;
-    
-    eventID		= -1;
 }
 
 void TweenVec2::updateComplete(bool bTweenIsComplete, int a_millis){

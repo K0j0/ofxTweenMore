@@ -13,7 +13,6 @@
 
 #include "ofMain.h"
 #include "TweenSelector.h"
-#include "TweenEvent.h"
 #include "TweenListener.h"
 
 class Tween {
@@ -58,10 +57,7 @@ public:
 	void setRepeat( int a_repeat, bool a_pingPong=false );
     
     virtual TweenType getTweenType() { return _tweenType; }
-	
-	unsigned int eventID;
-    TweenEvent event;
-    
+	    
     bool hasListener;
     TweenListener listener;
     

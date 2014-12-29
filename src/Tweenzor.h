@@ -14,7 +14,6 @@
 #include "ofVec2f.h"
 #include "Tween.h"
 #include "TweenVec2.h"
-#include "TweenEvent.h"
 #include "TweenListener.h"
 
 typedef struct _tweenParams {
@@ -96,7 +95,7 @@ public:
 
     // ofVec2f
     static TweenVec2& add(ofVec2f* a_vec, const ofVec2f& v_begin, const ofVec2f& v_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
-    static TweenVec2& add(ofVec2f* a_vec, const ofVec2f& v_begin, const ofVec2f& v_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    static TweenVec2& framesAdd(ofVec2f* a_vec, const ofVec2f& v_begin, const ofVec2f& v_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
     // ofVec3f
     static void add(ofVec3f* a_vec, const ofVec3f& v_begin, const ofVec3f& v_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);

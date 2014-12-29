@@ -90,7 +90,6 @@
 		E80F01941A4E8FD800F4ED26 /* ofxTweenzor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTweenzor.h; sourceTree = "<group>"; };
 		E80F01951A4E8FD800F4ED26 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
 		E80F01961A4E8FD800F4ED26 /* Tween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tween.h; sourceTree = "<group>"; };
-		E80F01971A4E8FD800F4ED26 /* TweenEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenEvent.h; sourceTree = "<group>"; };
 		E80F01981A4E8FD800F4ED26 /* TweenFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenFunctions.h; sourceTree = "<group>"; };
 		E80F01991A4E8FD800F4ED26 /* TweenSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenSelector.h; sourceTree = "<group>"; };
 		E80F019A1A4E8FD800F4ED26 /* Tweenzor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tweenzor.cpp; sourceTree = "<group>"; };
@@ -213,7 +212,6 @@
 				E80F01941A4E8FD800F4ED26 /* ofxTweenzor.h */,
 				E80F01951A4E8FD800F4ED26 /* Tween.cpp */,
 				E80F01961A4E8FD800F4ED26 /* Tween.h */,
-				E80F01971A4E8FD800F4ED26 /* TweenEvent.h */,
 				E80F01A11A4F5AAF00F4ED26 /* TweenListener.h */,
 				E80F01981A4E8FD800F4ED26 /* TweenFunctions.h */,
 				E80F01991A4E8FD800F4ED26 /* TweenSelector.h */,

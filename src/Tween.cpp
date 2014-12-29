@@ -66,11 +66,8 @@ void Tween::_setup(float* a_property, float a_begin, float a_end, float a_delay,
 	
 	_isRunning	= true;
 	_isComplete = false;
-	
-	eventID		= -1;
     
-    name = "-unassigned-";
-    
+    name = "-unassigned-";    
     
 //    string h = "hi";
 //    addListener(this, &Tween::fooFunc2, h);
