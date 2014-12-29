@@ -226,10 +226,23 @@ TweenVec2 * Tweenzor::getTween(ofVec2f * vec) {
 }
 
 Tween* Tweenzor::getTween(ofVec3f *vec) {
-    return getTween(&vec->x);
+    vector<Tween *>::iterator it;
+    for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); ++it ) {
+        if((*it)->getTweenType() == Tween::VEC3 && static_cast<TweenVec3 *>(*it)->getProperty() == vec) {
+            return static_cast<TweenVec3 *>(*it);
+        }
+    }
+    return NULL;
 }
+
 Tween* Tweenzor::getTween(ofVec4f *vec) {
-    return getTween(&vec->x);
+    vector<Tween *>::iterator it;
+    for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); ++it ) {
+        if((*it)->getTweenType() == Tween::VEC4 && static_cast<TweenVec4 *>(*it)->getProperty() == vec) {
+            return static_cast<TweenVec4 *>(*it);
+        }
+    }
+    return NULL;
 }
 
 Tween* Tweenzor::getTween(ofRectangle *rect) {
