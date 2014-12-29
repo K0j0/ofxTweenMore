@@ -90,15 +90,25 @@ public:
 	static void init();
 	static void update(int a_millis);
     
+    // float
 	static Tween& framesAdd(float* a_property, float a_begin, float a_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
 	static Tween& add(float* a_property, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+
+    // ofVec2f
     static TweenVec2& add(ofVec2f* a_vec, const ofVec2f& v_begin, const ofVec2f& v_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    static TweenVec2& add(ofVec2f* a_vec, const ofVec2f& v_begin, const ofVec2f& v_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
-    static void add(ofFloatColor* a_color, const ofFloatColor& c_begin, const ofFloatColor& c_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    // ofVec3f
     static void add(ofVec3f* a_vec, const ofVec3f& v_begin, const ofVec3f& v_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    
+    // ofVec4f
     static void add(ofVec4f* a_vec, const ofVec4f& v_begin, const ofVec4f& v_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    
+    // ofRectangle
     static void add(ofRectangle* a_rect, const ofRectangle& r_begin, const ofRectangle& r_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
+    // ofFloatColor
+    static void add(ofFloatColor* a_color, const ofFloatColor& c_begin, const ofFloatColor& c_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
 	// I never use these. Decide whether or not to keep them
     static void add(vector <float *> a_properties, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
@@ -106,9 +116,10 @@ public:
 	static void add( vector<TweenParams>& a_params );
     
     
-	static void removeAllTweens();
-	static void removeTween( float * a_property );
-    static void removeTween( ofVec2f * a_property );
+    static void removeTween(Tween * tween);
+	static void removeTween(float * a_property);
+    static void removeTween(ofVec2f * a_property);
+    static void removeAllTweens();
 	
 	static void destroy();
 	
@@ -119,18 +130,19 @@ public:
 	
 	static int getSize();
 	
-	static Tween* getTween( float * a_property );
-    static Tween* getTween( ofFloatColor *color );
-    static TweenVec2 * getTween( ofVec2f *vec );
-    static Tween* getTween( ofVec3f *vec );
-    static Tween* getTween( ofVec4f *vec );
-    static Tween* getTween( ofRectangle *rect );
+	static Tween* getTween(float * a_property);
+    static TweenVec2 * getTween(ofVec2f *vec);
+    static Tween* getTween(ofVec3f *vec);
+    static Tween* getTween(ofVec4f *vec);
+    static Tween* getTween(ofRectangle *rect);
+    static Tween* getTween(ofFloatColor *color);
     
 	static Tween* getRecentTween();
     
 	
 	static void removeCompleteListener( Tween* a_tween );
 	static void removeCompleteListener( float* a_property );
+    static void removeCompleteListener( ofVec2f * a_property );
 	static void removeAllListeners();
 	
 

@@ -24,8 +24,8 @@ void ofApp::setup() {
     pos1 = ofVec2f(200, 50);
 	
 	
-	Tweenzor::add(&_x1, 200.f, 900.f, 0.f, 2.f).name = "x1";
-//    Tweenzor::add(&pos1, ofVec2f(200, 50), ofVec2f(900, 50), 0.f, 1.f);
+//	Tweenzor::add(&_x1, 200.f, 900.f, 0.f, 2.f).name = "x1";
+    Tweenzor::add(&pos1, ofVec2f(200, 50), ofVec2f(900, 50), 0.f, 1.f).name = "pos1";
     
 	
 	// lets set the tween to repeat once
@@ -40,15 +40,14 @@ void ofApp::setup() {
 	// it will go begin value -> end value
 	// and then repeat begin value -> end value
 	
-	Tweenzor::getTween( &_x1 )->setRepeat( 1, true );
+//	Tweenzor::getTween( &_x1 )->setRepeat( 1, true );
+    Tweenzor::getTween( &pos1 )->setRepeat( 1, true );
     
+    // let's add a listener so we know when this tween is done //
 //    Tweenzor::getTween( &_x1 )->addListener(this, &ofApp::tweenCallback);
-    Tweenzor::getTween( &_x1 )->addListener(this, &ofApp::onComplete, &_x1);
-    
-//    Tweenzor::getTween( &pos1 )->setRepeat( 1, true );
-	// let's add a listener so we know when this tween is done //
-//	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete, &_x1);
-//    Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::tweenCallback);
+//    Tweenzor::getTween( &_x1 )->addListener(this, &ofApp::onComplete, &_x1);
+
+    Tweenzor::getTween( &pos1 )->addListener(this, &ofApp::onComplete, &_x1);
 }
 
 //--------------------------------------------------------------
@@ -69,11 +68,12 @@ void ofApp::onComplete(float* arg) {
 	}
 	
 	
-	Tweenzor::add( &_x1, _begin, _tarX, 0.f, 2.f ).name = "x1";
+//	Tweenzor::add( &_x1, _begin, _tarX, 0.f, 2.f ).name = "x1";
+    Tweenzor::add(&pos1, ofVec2f(200, 50), ofVec2f(900, 50), 0.f, 2.f).name = "pos1";
 	
 	// add the complete listener again so that it will fire again, creating a loop //
-//	Tweenzor::addCompleteListener( Tweenzor::getTween(&_x1), this, &ofApp::onComplete, &_x1);
-    Tweenzor::getTween( &_x1 )->addListener(this, &ofApp::onComplete, &_x1);
+//    Tweenzor::getTween( &_x1 )->addListener(this, &ofApp::onComplete, &_x1);
+    Tweenzor::getTween( &pos1 )->addListener(this, &ofApp::onComplete, &_x1);
 	
 	Tweenzor::add(&_x2, _x2, _tarX, 0.f, 2.f, EASE_IN_OUT_SINE).name = "x2";
 	Tweenzor::add(&_x3, _x3, _tarX, 0.f, 2.f, EASE_IN_OUT_QUAD).name = "x3";
@@ -122,8 +122,8 @@ void ofApp::draw(){
 	
 	
 	ofSetColor(255, 0, 0);
-	ofDrawCircle(_x1, 50, 10);
-//    ofDrawCircle(pos1.x, pos1.y, 10);
+//	ofDrawCircle(_x1, 50, 10);
+    ofDrawCircle(pos1.x, pos1.y, 10);
 	ofDrawCircle(_x2, 100, 10);
 	ofDrawCircle(_x3, 150, 10);
 	ofDrawCircle(_x4, 200, 10);
