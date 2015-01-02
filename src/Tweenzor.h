@@ -17,6 +17,7 @@
 #include "TweenVec3.h"
 #include "TweenVec4.h"
 #include "TweenColor.h"
+#include "TweenRect.h"
 #include "TweenListener.h"
 
 
@@ -44,8 +45,8 @@ public:
     static TweenVec4& framesAdd(ofVec4f* a_vec, const ofVec4f& v_begin, const ofVec4f& v_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
     // ofRectangle
-    static void add(ofRectangle* a_rect, const ofRectangle& r_begin, const ofRectangle& r_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
-    static void framesAdd(ofRectangle* a_rect, const ofRectangle& r_begin, const ofRectangle& r_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    static TweenRect& add(ofRectangle* a_rect, const ofRectangle& r_begin, const ofRectangle& r_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    static TweenRect& framesAdd(ofRectangle* a_rect, const ofRectangle& r_begin, const ofRectangle& r_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
     // ofFloatColor
     static TweenColor& add(ofFloatColor* a_color, const ofFloatColor& c_begin, const ofFloatColor& c_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
@@ -57,6 +58,7 @@ public:
     static void removeTween(ofVec3f * a_property);
     static void removeTween(ofVec4f * a_property);
     static void removeTween(ofFloatColor * a_property);
+    static void removeTween(ofRectangle * a_property);
     static void removeAllTweens();
 	
 	static void destroy();
@@ -70,11 +72,11 @@ public:
 	
 	static Tween* getTween(float * a_property);
     static TweenVec2 * getTween(ofVec2f *vec);
-    static Tween* getTween(ofVec3f *vec);
-    static Tween* getTween(ofVec4f *vec);
-    static Tween* getTween(ofRectangle *rect);
-    static Tween* getTween(ofFloatColor *color);
-    
+    static TweenVec3 * getTween(ofVec3f *vec);
+    static TweenVec4 * getTween(ofVec4f *vec);
+    static TweenRect * getTween(ofRectangle *rect);
+    static TweenColor * getTween(ofFloatColor *color);
+
 	static Tween* getRecentTween();
     
 	

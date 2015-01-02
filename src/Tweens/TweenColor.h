@@ -29,8 +29,9 @@ public:
 protected:
     void _setup(ofFloatColor * a_property, ofFloatColor a_begin, ofFloatColor a_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a);
     
-    ofFloatColor _change, _begin, _end;
-    ofFloatColor _initBegin, _initEnd; // store these, since during a ping pong, we need to switch them //
+    ofVec4f _change, _begin, _end;
+    ofVec4f _initBegin, _initEnd; // store these, since during a ping pong, we need to switch them //
+    ofFloatColor _beginColor, _endColor;
     
     ofFloatColor *_propAdd;
 };

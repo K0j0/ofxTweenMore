@@ -33,6 +33,7 @@
 		E80F01B31A51003F00F4ED26 /* TweenVec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F01AD1A51003F00F4ED26 /* TweenVec3.cpp */; };
 		E80F01B41A51003F00F4ED26 /* TweenVec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F01AF1A51003F00F4ED26 /* TweenVec4.cpp */; };
 		E80F02DA1A56334500F4ED26 /* TweenColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F02D81A56334500F4ED26 /* TweenColor.cpp */; };
+		E80F02DD1A572CD900F4ED26 /* TweenRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F02DB1A572CD900F4ED26 /* TweenRect.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,8 @@
 		E80F01B01A51003F00F4ED26 /* TweenVec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenVec4.h; sourceTree = "<group>"; };
 		E80F02D81A56334500F4ED26 /* TweenColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TweenColor.cpp; sourceTree = "<group>"; };
 		E80F02D91A56334500F4ED26 /* TweenColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenColor.h; sourceTree = "<group>"; };
+		E80F02DB1A572CD900F4ED26 /* TweenRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TweenRect.cpp; sourceTree = "<group>"; };
+		E80F02DC1A572CD900F4ED26 /* TweenRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenRect.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,15 +237,17 @@
 			isa = PBXGroup;
 			children = (
 				E80F01A91A51003F00F4ED26 /* Tween.cpp */,
+				E80F01AA1A51003F00F4ED26 /* Tween.h */,
 				E80F02D81A56334500F4ED26 /* TweenColor.cpp */,
 				E80F02D91A56334500F4ED26 /* TweenColor.h */,
-				E80F01AA1A51003F00F4ED26 /* Tween.h */,
 				E80F01AB1A51003F00F4ED26 /* TweenVec2.cpp */,
 				E80F01AC1A51003F00F4ED26 /* TweenVec2.h */,
 				E80F01AD1A51003F00F4ED26 /* TweenVec3.cpp */,
 				E80F01AE1A51003F00F4ED26 /* TweenVec3.h */,
 				E80F01AF1A51003F00F4ED26 /* TweenVec4.cpp */,
 				E80F01B01A51003F00F4ED26 /* TweenVec4.h */,
+				E80F02DB1A572CD900F4ED26 /* TweenRect.cpp */,
+				E80F02DC1A572CD900F4ED26 /* TweenRect.h */,
 			);
 			path = Tweens;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 				E80F01B31A51003F00F4ED26 /* TweenVec3.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E80F01B41A51003F00F4ED26 /* TweenVec4.cpp in Sources */,
+				E80F02DD1A572CD900F4ED26 /* TweenRect.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				E80F01B11A51003F00F4ED26 /* Tween.cpp in Sources */,
 				E80F019D1A4E8FD800F4ED26 /* Tweenzor.cpp in Sources */,

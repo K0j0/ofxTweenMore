@@ -100,6 +100,7 @@ void TweenVec3::updateComplete(bool bTweenIsComplete, int a_millis){
 void TweenVec3::updateProperty() {
     _propAdd->x = TweenSelector::getValueEase(MAX(_time - (float)_delay, 0.f), _begin.x, _change.x, _duration, _easeType, _p, _a);
     _propAdd->y = TweenSelector::getValueEase(MAX(_time - (float)_delay, 0.f), _begin.y, _change.y, _duration, _easeType, _p, _a);
+    _propAdd->z = TweenSelector::getValueEase(MAX(_time - (float)_delay, 0.f), _begin.z, _change.z, _duration, _easeType, _p, _a);
 }
 
 //--------------------------------------------------------------
@@ -124,7 +125,8 @@ float TweenVec3::getPropertyPct() {
     } else {
         // first check for x then for y
         if((_end.x - _begin.x) != 0) pct = (_propAdd->x - _begin.x) / (_end.x - _begin.x);
-        else pct = (_propAdd->y - _begin.y) / (_end.y - _begin.y);
+        else if((_end.y - _begin.y) != 0) pct = (_propAdd->y - _begin.y) / (_end.y - _begin.y);
+        else pct = (_propAdd->z - _begin.z) / (_end.z - _begin.z);
     }
     return pct < 0 ? pct * -1 : pct;
 }

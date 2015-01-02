@@ -3,144 +3,72 @@
 ofFloatColor color;
 //--------------------------------------------------------------
 void ofApp::setup() {
-    color = ofColor::cadetBlue;
     ofSetFrameRate(60);
 	ofSetVerticalSync(true);
-	
-	// must call this before adding any tweens //
-	Tweenzor::init();
-	
-	paused = false;
-	
-	_x1 = 200.f;
-	_x2 = 200.f;
-	_x3 = 200.f;
-	_x4 = 200.f;
-	_x5 = 200.f;
-	_x6 = 200.f;
-	_x7 = 200.f;
-	_x8 = 200.f;
-	_x9 = 200.f;
-	_x10 = 200.f;
+    ofSetCircleResolution(60);
     
-    pos1 = ofVec2f(200, 50);
-	
-	
-//	Tweenzor::add(&_x1, 200.f, 900.f, 0.f, 2.f).name = "x1";
-    Tweenzor::add(&pos1, ofVec2f(200, 50), ofVec2f(900, 50), 0.f, 1.f).name = "pos1";
+    // must call this before adding any tweens //
+    Tweenzor::init();
     
-//    Tweenzor::add(&color, ofFloatColor::white, ofFloatColor::black, 0.f, 10.f).name = "bgColor";
+    // float tween
+    f = 380;
+    Tweenzor::add(&f, f, 10, 0, 2).setRepeat(-1, true); // -1 will repeat forever
+	
+    // ofVec2 tween
+    vec2 = ofVec2f(100, 380);
+    Tweenzor::add(&vec2, vec2, ofVec2f(200, 10), 0, 2).setRepeat(-1, true);
     
+    // ofVec3, z will control alpha
+    vec3 = ofVec3f(200, 380, 1);
+    Tweenzor::add(&vec3, vec3, ofVec3f(300, 10, 0), 0, 2).setRepeat(-1, true);
 	
-	// lets set the tween to repeat once
-	// it will run once and then repeat once
-	
-	// the second argument (true) is a ping pong parameter
-	// if this is set to true:
-	// it will go begin value -> end value
-	// and then repeat end value -> begin value
-	
-	// but if ping pong is set to false:
-	// it will go begin value -> end value
-	// and then repeat begin value -> end value
-	
-//	Tweenzor::getTween( &_x1 )->setRepeat( 1, true );
-    Tweenzor::getTween( &pos1 )->setRepeat( 1, true );
+    // ofVec4, will treat as 2 separate coordinates
+    vec4 = ofVec4f(350, 380, 450, 380);
+    Tweenzor::add(&vec4, vec4, ofVec4f(450, 10, 350, 10), 0, 2).setRepeat(-1, true);
     
-    // let's add a listener so we know when this tween is done //
-//    Tweenzor::getTween( &_x1 )->addListener(this, &ofApp::tweenCallback);
-//    Tweenzor::getTween( &_x1 )->addListener(this, &ofApp::onComplete, &_x1);
-
-    Tweenzor::getTween( &pos1 )->addListener(this, &ofApp::onComplete, &_x1);
+    // ofFloatColor
+    floatColor = ofColor::orange;
+    Tweenzor::add(&floatColor, floatColor, ofColor::pink, 0, 2).setRepeat(-1, true);
+    
+    // ofRectangle
+    rect = ofRectangle(500, 200, 160, 100);
+    Tweenzor::add(&rect, rect, ofRectangle(600, 300, 80, 50), 0, 2).setRepeat(-1, true);
 }
 
-//--------------------------------------------------------------
-// this function is called on when the tween is complete //
-void ofApp::onComplete(float* arg) {
-	cout << "ofApp :: onComplete : arg = " << *arg << endl;
-	float _tarX = 0.f;
-	float _begin = 0.f;
-	
-	// the arg argument is a pointer to the variable passed in when calling Tweenzor::add();
-	// if you want to check its value, you must de-reference it by calling *arg
-	if (*arg > 300) {
-		_tarX = 200.f;
-		_begin = 900.f;
-	} else {
-		_tarX = 900.f;
-		_begin = 200.f;
-	}
-	
-	
-//	Tweenzor::add( &_x1, _begin, _tarX, 0.f, 2.f ).name = "x1";
-    Tweenzor::add(&pos1, ofVec2f(200, 50), ofVec2f(900, 50), 0.f, 2.f).name = "pos1";
-	
-	// add the complete listener again so that it will fire again, creating a loop //
-//    Tweenzor::getTween( &_x1 )->addListener(this, &ofApp::onComplete, &_x1);
-    Tweenzor::getTween( &pos1 )->addListener(this, &ofApp::onComplete, &_x1);
-	
-	Tweenzor::add(&_x2, _x2, _tarX, 0.f, 2.f, EASE_IN_OUT_SINE).name = "x2";
-	Tweenzor::add(&_x3, _x3, _tarX, 0.f, 2.f, EASE_IN_OUT_QUAD).name = "x3";
-	
-	Tweenzor::add( &_x4, _x4, _tarX, 0.f, 2.f, EASE_IN_OUT_QUART ).name = "x4";
-	Tweenzor::add( &_x5, _x5, _tarX, 0.f, 2.f, EASE_IN_OUT_CUBIC ).name = "x5";
-	Tweenzor::add( &_x6, _x6, _tarX, 0.f, 2.f, EASE_IN_OUT_QUINT ).name = "x6";
-	Tweenzor::add( &_x7, _x7, _tarX, 0.f, 2.f, EASE_IN_OUT_CIRC ).name = "x7";
-	Tweenzor::add( &_x8, _x8, _tarX, 0.f, 2.f, EASE_IN_OUT_ELASTIC ).name = "x8";
-	Tweenzor::add( &_x9, _x9, _tarX, 0.f, 2.f, EASE_IN_OUT_BACK ).name = "x9";
-	Tweenzor::add( &_x10, _x10, _tarX, 0.f, 2.f, EASE_IN_OUT_BOUNCE ).name = "x10";
-	
-	
-	
-}
-
-void ofApp::tweenCallback(){
-    ofLog() << "tweenCallback() called";
-}
 
 //--------------------------------------------------------------
 void ofApp::update(){
     Tweenzor::update( ofGetElapsedTimeMillis() );
+    ofLog() << vec3;
 }
 
 //--------------------------------------------------------------
 
 void ofApp::draw(){
-    ofSetBackgroundColor(color);
+    ofDrawBitmapStringHighlight("float", 10, 400);
+    ofSetColor(ofColor::red);
+    ofDrawCircle(30, f, 5);
+
+    ofDrawBitmapStringHighlight("ofVec2", 80, 400);
+    ofSetColor(ofColor::blue);
+    ofDrawCircle(vec2.x, vec2.y, 5);
     
-    ofSetColor(100, 100, 100);
-	for (int i = 0; i < 10; i++) {
-		float yPos = (float)i * 50 + 50;
-		ofDrawLine(0, yPos, ofGetWidth(), yPos);
-	}
-	
-	ofDrawBitmapString("LINEAR", 20, 47);
-	ofDrawBitmapString("IN_OUT_SINE", 20, 97);
-	ofDrawBitmapString("IN_OUT_QUAD", 20, 147);
-	ofDrawBitmapString("IN_OUT_QUART", 20, 197);
-	ofDrawBitmapString("IN_OUT_CUBIC", 20, 247);
-	ofDrawBitmapString("IN_OUT_QUINT", 20, 297);
-	ofDrawBitmapString("IN_OUT_CIRC", 20, 347);
-	ofDrawBitmapString("IN_OUT_ELASTIC", 20, 397);
-	ofDrawBitmapString("IN_OUT_BACK", 20, 447);
-	ofDrawBitmapString("IN_OUT_BOUNCE", 20, 497);
-	
-	ofDrawBitmapString("hit space to toggle all tweens\nhit r to reset tweens", 20, 550);
-	
-	
-	ofSetColor(255, 0, 0);
-//	ofDrawCircle(_x1, 50, 10);
-    ofDrawCircle(pos1.x, pos1.y, 10);
-	ofDrawCircle(_x2, 100, 10);
-	ofDrawCircle(_x3, 150, 10);
-	ofDrawCircle(_x4, 200, 10);
-	ofDrawCircle(_x5, 250, 10);
-	ofDrawCircle(_x6, 300, 10);
-	ofDrawCircle(_x7, 350, 10);
-	ofDrawCircle(_x8, 400, 10);
-	ofDrawCircle(_x9, 450, 10);
-	ofDrawCircle(_x10, 500, 10);
+    ofDrawBitmapStringHighlight("ofVec3", 180, 400);
+    ofColor color = ofColor::yellow;
+    color.a = vec3.z * 255;
+    ofSetColor(color);
+    ofDrawCircle(vec3.x, vec3.y, 5);
+    
+    ofDrawBitmapStringHighlight("ofVec4", 375, 400);
+    ofSetColor(ofColor::green);
+    ofDrawCircle(vec4.x, vec4.y, 5);
+    ofDrawCircle(vec4.z, vec4.w, 5);
+    
+    ofDrawBitmapStringHighlight("ofRectangle and ofFloatColor", 550, 400);
+    ofSetColor(floatColor);
+    ofDrawRectangle(rect);
 }
+
 
 //--------------------------------------------------------------
 void ofApp::exit() {
@@ -149,15 +77,7 @@ void ofApp::exit() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if (key == ' ') {
-		paused = !paused;
-		Tweenzor::toggleAllTweens();
-	} else if (key == 'r') {
-		Tweenzor::resetAllTweens();
-	} else if ( key == 't') {
-		float num = 0.f;
-		onComplete(&num);
-	}
+    
 }
 
 //--------------------------------------------------------------

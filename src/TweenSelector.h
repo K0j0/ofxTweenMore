@@ -61,6 +61,8 @@
 class TweenSelector {
 public:
 	
+    //TODO, consider overloading each of these with methods that take int, ofVec2, ofFloatColor, etc.
+    // would those perform better?
 	static float getValueEase(float a_t, float a_b, float a_c, float a_d, int a_easeType = 0, float a_p = 0, float a_a = 0) {
 		switch (a_easeType) {
 			case EASE_LINEAR:
