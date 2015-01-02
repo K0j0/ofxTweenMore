@@ -1,7 +1,9 @@
 #include "ofApp.h"
 
+ofFloatColor color;
 //--------------------------------------------------------------
 void ofApp::setup() {
+    color = ofColor::cadetBlue;
     ofSetFrameRate(60);
 	ofSetVerticalSync(true);
 	
@@ -26,6 +28,8 @@ void ofApp::setup() {
 	
 //	Tweenzor::add(&_x1, 200.f, 900.f, 0.f, 2.f).name = "x1";
     Tweenzor::add(&pos1, ofVec2f(200, 50), ofVec2f(900, 50), 0.f, 1.f).name = "pos1";
+    
+//    Tweenzor::add(&color, ofFloatColor::white, ofFloatColor::black, 0.f, 10.f).name = "bgColor";
     
 	
 	// lets set the tween to repeat once
@@ -100,7 +104,10 @@ void ofApp::update(){
 }
 
 //--------------------------------------------------------------
+
 void ofApp::draw(){
+    ofSetBackgroundColor(color);
+    
     ofSetColor(100, 100, 100);
 	for (int i = 0; i < 10; i++) {
 		float yPos = (float)i * 50 + 50;

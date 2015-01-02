@@ -16,6 +16,7 @@
 #include "TweenVec2.h"
 #include "TweenVec3.h"
 #include "TweenVec4.h"
+#include "TweenColor.h"
 #include "TweenListener.h"
 
 
@@ -47,14 +48,15 @@ public:
     static void framesAdd(ofRectangle* a_rect, const ofRectangle& r_begin, const ofRectangle& r_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
     // ofFloatColor
-    static void add(ofFloatColor* a_color, const ofFloatColor& c_begin, const ofFloatColor& c_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
-    static void framesAdd(ofFloatColor* a_color, const ofFloatColor& c_begin, const ofFloatColor& c_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    static TweenColor& add(ofFloatColor* a_color, const ofFloatColor& c_begin, const ofFloatColor& c_end, float a_delay, float a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    static TweenColor& framesAdd(ofFloatColor* a_color, const ofFloatColor& c_begin, const ofFloatColor& c_end, int a_delay, int a_duration, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     
     static void removeTween(Tween * tween);
 	static void removeTween(float * a_property);
     static void removeTween(ofVec2f * a_property);
     static void removeTween(ofVec3f * a_property);
     static void removeTween(ofVec4f * a_property);
+    static void removeTween(ofFloatColor * a_property);
     static void removeAllTweens();
 	
 	static void destroy();
