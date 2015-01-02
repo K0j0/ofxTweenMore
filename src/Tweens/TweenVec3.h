@@ -15,8 +15,8 @@
 class TweenVec3 : public Tween {
 public:
     
-    TweenVec3(ofVec3f * a_property, ofVec3f a_begin, ofVec3f a_end, int a_delay, int a_duration, int a_easeType, float a_p=0, float a_a=0);
-    TweenVec3(ofVec3f * a_property, int a_millis, ofVec3f a_begin, ofVec3f a_end, float a_delay, float a_duration, int a_easeType, float a_p=0, float a_a=0);
+    TweenVec3(ofVec3f * a_property, ofVec3f a_begin, ofVec3f a_end, int a_duration, int a_delay, int a_easeType, float a_p=0, float a_a=0);
+    TweenVec3(ofVec3f * a_property, int a_millis, ofVec3f a_begin, ofVec3f a_end, float a_duration, float a_delay, int a_easeType, float a_p=0, float a_a=0);
     
     void updateComplete(bool bTweenIsComplete, int a_millis);
     
@@ -28,7 +28,7 @@ public:
     
     
 protected:
-    void _setup(ofVec3f * a_property, ofVec3f a_begin, ofVec3f a_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a);
+    void _setup(ofVec3f * a_property, ofVec3f a_begin, ofVec3f a_end, float a_duration, float a_delay, int a_easeType, float a_p, float a_a);
     
     ofVec3f _change, _begin, _end;
     ofVec3f _initBegin, _initEnd; // store these, since during a ping pong, we need to switch them //

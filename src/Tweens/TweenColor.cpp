@@ -10,16 +10,16 @@
 
 //--------------------------------------------------------------
 // pass in ints for delay and duration as number of frames //
-TweenColor::TweenColor(ofFloatColor * a_property, ofFloatColor  a_begin, ofFloatColor  a_end, int a_delay, int a_duration, int a_easeType, float a_p, float a_a) {
+TweenColor::TweenColor(ofFloatColor * a_property, ofFloatColor  a_begin, ofFloatColor a_end, int a_duration, int a_delay, int a_easeType, float a_p, float a_a) {
     _useSeconds = false;
     _time		= 0.f;
     
-    _setup(a_property, a_begin, a_end, (float)a_delay, (float)a_duration, a_easeType, a_p, a_a);
+    _setup(a_property, a_begin, a_end, (float)a_duration, (float)a_delay, a_easeType, a_p, a_a);
 }
 
 //--------------------------------------------------------------
 // pass in floats for delay and duration as seconds //
-TweenColor::TweenColor(ofFloatColor * a_property, int a_millis, ofFloatColor  a_begin, ofFloatColor  a_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a) {
+TweenColor::TweenColor(ofFloatColor * a_property, int a_millis, ofFloatColor  a_begin, ofFloatColor a_end, float a_duration, float a_delay, int a_easeType, float a_p, float a_a) {
     _useSeconds = true;
     // convert seconds to millis //
     a_delay		= a_delay * 1000.f;
@@ -28,12 +28,12 @@ TweenColor::TweenColor(ofFloatColor * a_property, int a_millis, ofFloatColor  a_
     _startTime	= a_millis;
     _time = 0.f;
     
-    _setup(a_property, a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a);
+    _setup(a_property, a_begin, a_end, a_duration, a_delay, a_easeType, a_p, a_a);
 }
 
 // TODO, implement with a Vector4. Seems I can't have negative rgba values for ofColor which is a problem for _change
 //--------------------------------------------------------------
-void TweenColor::_setup(ofFloatColor * a_property, ofFloatColor a_begin, ofFloatColor a_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a) {
+void TweenColor::_setup(ofFloatColor * a_property, ofFloatColor a_begin, ofFloatColor a_end, float a_duration, float a_delay, int a_easeType, float a_p, float a_a) {
     _tweenType = COLOR;
     
     _propAdd	= a_property;

@@ -11,16 +11,16 @@
 
 //--------------------------------------------------------------
 // pass in ints for delay and duration as number of frames //
-Tween::Tween(float* a_property, float a_begin, float a_end, int a_delay, int a_duration, int a_easeType, float a_p, float a_a) {
+Tween::Tween(float* a_property, float a_begin, float a_end, int a_duration, int a_delay, int a_easeType, float a_p, float a_a) {
 	_useSeconds = false;
 	_time		= 0.f;
 	
-	_setup(a_property, a_begin, a_end, (float)a_delay, (float)a_duration, a_easeType, a_p, a_a);
+	_setup(a_property, a_begin, a_end, (float)a_duration, (float)a_delay, a_easeType, a_p, a_a);
 }
 
 //--------------------------------------------------------------
 // pass in floats for delay and duration as seconds //
-Tween::Tween(float* a_property, int a_millis, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a) {
+Tween::Tween(float* a_property, int a_millis, float a_begin, float a_end, float a_duration, float a_delay, int a_easeType, float a_p, float a_a) {
 	_useSeconds = true;
 	// convert seconds to millis //
 	a_delay		= a_delay * 1000.f;
@@ -29,7 +29,7 @@ Tween::Tween(float* a_property, int a_millis, float a_begin, float a_end, float 
 	_startTime	= a_millis;
 	_time = 0.f;
 	
-	_setup(a_property, a_begin, a_end, a_delay, a_duration, a_easeType, a_p, a_a);
+	_setup(a_property, a_begin, a_end, a_duration, a_delay, a_easeType, a_p, a_a);
 }
 
 Tween::~Tween(){
@@ -38,7 +38,7 @@ Tween::~Tween(){
 }
 
 //--------------------------------------------------------------
-void Tween::_setup(float* a_property, float a_begin, float a_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a) {
+void Tween::_setup(float* a_property, float a_begin, float a_end, float a_duration, float a_delay, int a_easeType, float a_p, float a_a) {
     _tweenType = FLOAT;
     
 	_propAdd	= a_property;

@@ -14,8 +14,8 @@
 class TweenColor : public Tween {
 public:
     
-    TweenColor(ofFloatColor * a_property, ofFloatColor a_begin, ofFloatColor a_end, int a_delay, int a_duration, int a_easeType, float a_p=0, float a_a=0);
-    TweenColor(ofFloatColor * a_property, int a_millis, ofFloatColor a_begin, ofFloatColor a_end, float a_delay, float a_duration, int a_easeType, float a_p=0, float a_a=0);
+    TweenColor(ofFloatColor * a_property, ofFloatColor a_begin, ofFloatColor a_end, int a_duration, int delay, int a_easeType, float a_p=0, float a_a=0);
+    TweenColor(ofFloatColor * a_property, int a_millis, ofFloatColor a_begin, ofFloatColor a_end, float a_duration, float a_delay, int a_easeType, float a_p=0, float a_a=0);
     
     void updateComplete(bool bTweenIsComplete, int a_millis);
     
@@ -27,7 +27,7 @@ public:
     
     
 protected:
-    void _setup(ofFloatColor * a_property, ofFloatColor a_begin, ofFloatColor a_end, float a_delay, float a_duration, int a_easeType, float a_p, float a_a);
+    void _setup(ofFloatColor * a_property, ofFloatColor a_begin, ofFloatColor a_end, float a_duration, float a_delay, int a_easeType, float a_p, float a_a);
     
     ofVec4f _change, _begin, _end;
     ofVec4f _initBegin, _initEnd; // store these, since during a ping pong, we need to switch them //
