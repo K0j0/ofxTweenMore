@@ -12,34 +12,33 @@ void ofApp::setup() {
     
     // float tween
     f = 380;
-    Tweenzor::add(&f, f, 10, 0, 2).setRepeat(-1, true); // -1 will repeat forever
+    Tweenzor::add(&f, f, 10, 2).setRepeat(-1, true); // -1 will repeat forever
 	
     // ofVec2 tween
     vec2 = ofVec2f(100, 380);
-    Tweenzor::add(&vec2, vec2, ofVec2f(200, 10), 0, 2).setRepeat(-1, true);
+    Tweenzor::add(&vec2, vec2, ofVec2f(200, 10), 2).setRepeat(-1, true);
     
     // ofVec3, z will control alpha
     vec3 = ofVec3f(200, 380, 1);
-    Tweenzor::add(&vec3, vec3, ofVec3f(300, 10, 0), 0, 2).setRepeat(-1, true);
+    Tweenzor::add(&vec3, vec3, ofVec3f(300, 10, 0), 2).setRepeat(-1, true);
 	
     // ofVec4, will treat as 2 separate coordinates
     vec4 = ofVec4f(350, 380, 450, 380);
-    Tweenzor::add(&vec4, vec4, ofVec4f(450, 10, 350, 10), 0, 2).setRepeat(-1, true);
+    Tweenzor::add(&vec4, vec4, ofVec4f(450, 10, 350, 10), 2).setRepeat(-1, true);
     
     // ofFloatColor
     floatColor = ofColor::orange;
-    Tweenzor::add(&floatColor, floatColor, ofColor::pink, 0, 2).setRepeat(-1, true);
+    Tweenzor::add(&floatColor, floatColor, ofColor::pink, 2).setRepeat(-1, true);
     
     // ofRectangle
     rect = ofRectangle(500, 200, 160, 100);
-    Tweenzor::add(&rect, rect, ofRectangle(600, 300, 80, 50), 0, 2).setRepeat(-1, true);
+    Tweenzor::add(&rect, rect, ofRectangle(600, 300, 80, 50), 2).setRepeat(-1, true);
 }
 
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    Tweenzor::update( ofGetElapsedTimeMillis() );
-    ofLog() << vec3;
+    Tweenzor::update(ofGetElapsedTimeMillis());
 }
 
 //--------------------------------------------------------------
