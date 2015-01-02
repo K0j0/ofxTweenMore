@@ -103,8 +103,8 @@ void TweenColor::updateComplete(bool bTweenIsComplete, int a_millis){
 //--------------------------------------------------------------
 void TweenColor::updateProperty() {
     _propAdd->r = TweenSelector::getValueEase(MAX(_time - (float)_delay, 0.f), _begin.x, _change.x, _duration, _easeType, _p, _a);
-    _propAdd->b = TweenSelector::getValueEase(MAX(_time - (float)_delay, 0.f), _begin.y, _change.y, _duration, _easeType, _p, _a);
-    _propAdd->g = TweenSelector::getValueEase(MAX(_time - (float)_delay, 0.f), _begin.z, _change.z, _duration, _easeType, _p, _a);
+    _propAdd->g = TweenSelector::getValueEase(MAX(_time - (float)_delay, 0.f), _begin.y, _change.y, _duration, _easeType, _p, _a);
+    _propAdd->b = TweenSelector::getValueEase(MAX(_time - (float)_delay, 0.f), _begin.z, _change.z, _duration, _easeType, _p, _a);
     _propAdd->a = TweenSelector::getValueEase(MAX(_time - (float)_delay, 0.f), _begin.w, _change.w, _duration, _easeType, _p, _a);
 }
 

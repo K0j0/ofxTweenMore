@@ -36,9 +36,9 @@ void ofApp::setup() {
     
     // ofFloatColor
     floatColor = ofColor::orange;
-    Tweenzor::to(&floatColor, ofColor::pink, 2).setRepeat(-1, true);
+    Tweenzor::to(&floatColor, ofColor::violet, 2).setRepeat(-1, true);
     // same as this
-//    Tweenzor::add(&floatColor, floatColor, ofColor::pink, 2).setRepeat(-1, true);
+//    Tweenzor::add(&floatColor, floatColor, ofColor::violet, 2).setRepeat(-1, true);
     
     // ofRectangle
     rect = ofRectangle(500, 200, 160, 100);

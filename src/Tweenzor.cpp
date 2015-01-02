@@ -61,19 +61,19 @@ void Tweenzor::update(int a_millis) {
                         removeTween( __instance->_tweens[i]->getProperty() );
                     break;
                     case Tween::VEC2:
-                        removeTween( static_cast<TweenVec2 *>(__instance->_tweens[i])->getProperty() );
+                        removeTween(static_cast<TweenVec2 *>(__instance->_tweens[i])->getProperty());
                     break;
                     case Tween::VEC3:
-                        removeTween( __instance->_tweens[i]->getProperty() );
+                        removeTween(static_cast<TweenVec3 *>(__instance->_tweens[i])->getProperty());
                     break;
                     case Tween::VEC4:
-                        removeTween( __instance->_tweens[i]->getProperty() );
+                        removeTween(static_cast<TweenVec4 *>(__instance->_tweens[i])->getProperty());
                     break;
                     case Tween::RECT:
-                        removeTween( __instance->_tweens[i]->getProperty() );
+                        removeTween(static_cast<TweenRect *>(__instance->_tweens[i])->getProperty());
                     break;
                     case Tween::COLOR:
-                        removeTween( __instance->_tweens[i]->getProperty() );
+                        removeTween(static_cast<TweenColor *>(__instance->_tweens[i])->getProperty());
                     break;
                 }
 			}
@@ -282,7 +282,7 @@ Tween* Tweenzor::getTween( float* a_property ) {
     int len = __instance->_tweens.size();
     for(int i = 0; i < len; ++i){
         Tween * tween = __instance->_tweens[i];
-        if(tween->getProperty() == a_property){
+        if(tween->getTweenType() == Tween::FLOAT && tween->getProperty() == a_property){
             return tween;
         }
     }
@@ -371,8 +371,8 @@ void Tweenzor::removeAllListeners() {
 
 //--------------------------------------------------------------
 void Tweenzor::removeTween( float* a_property ) {
-    bool printed = false;
-    cout << "Remove tween ";
+//    bool printed = false;
+//    cout << "Remove tween ";
     if (__instance->_tweens.size() > 0) {
         int i = 0;
         vector<Tween *>::iterator it;
@@ -380,8 +380,8 @@ void Tweenzor::removeTween( float* a_property ) {
             if((*it)->getTweenType() == Tween::FLOAT){
                 if((*it)->getProperty() == a_property ) {
                 
-                    cout << " named " << (*it)->name << endl;
-                    printed = true;
+//                    cout << " named " << (*it)->name << endl;
+//                    printed = true;
                     
                     //cout << "Tweenzor :: removeTween : property = " <<  it->getProperty() << " = " << a_property << endl;
                     (*it)->stop();
@@ -393,7 +393,7 @@ void Tweenzor::removeTween( float* a_property ) {
             i++;
         }
     }
-    if(!printed) cout << "." << endl;
+//    if(!printed) cout << "." << endl;
 }
 
 void Tweenzor::removeTween( ofVec2f * a_property ) {
