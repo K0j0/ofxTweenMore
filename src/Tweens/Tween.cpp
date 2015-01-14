@@ -8,6 +8,7 @@
  */
 
 #include "Tween.h"
+#include "Tweenzor.h"
 
 //--------------------------------------------------------------
 // pass in ints for delay and duration as number of frames //
@@ -68,6 +69,8 @@ void Tween::_setup(float* a_property, float a_begin, float a_end, float a_durati
 	_isComplete = false;
     
     name = "-unassigned-";    
+    _next = NULL;
+    hasListener = false;
     
 //    string h = "hi";
 //    addListener(this, &Tween::fooFunc2, h);
@@ -177,6 +180,13 @@ void Tween::updateComplete(bool bTweenIsComplete, int a_millis){
             *_propAdd = _initBegin;
         }
         
+        // Check for chain
+        if(_next != NULL){
+        	ofLog() << "Chain tween";
+        	_next->reset(a_millis);
+        	Tweenzor::addTween(_next);
+        }
+
     } else {
         if (_useSeconds) {
             _startTime = a_millis;
@@ -203,6 +213,7 @@ void Tween::updateComplete(bool bTweenIsComplete, int a_millis){
 //--------------------------------------------------------------
 void Tween::updateProperty() {
 	*_propAdd = TweenSelector::getValueEase(MAX(_time - (float)_delay, 0.f), _begin, _change, _duration, _easeType, _p, _a);
+//	ofLog() << "tween to " << *_propAdd;
 }
 
 //--------------------------------------------------------------
@@ -273,7 +284,11 @@ bool Tween::running() {
 }
 
 
-
+Tween & Tween::chainTo(float a_end, int a_duration, int a_delay, int a_easeType, float a_p, float a_a){
+	_next = new Tween(this->_propAdd, 0, this->_end, a_end, a_duration, a_delay, a_easeType, a_p, a_a);
+	_next->name = "chainer";
+	return *_next;
+}
 
 
 

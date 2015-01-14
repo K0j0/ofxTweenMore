@@ -61,8 +61,6 @@ public:
     bool hasListener;
     TweenListener listener;
     
-    void fooFunc() { ofLog() << "fooFunc called"; }
-    void fooFunc2(string arg) { ofLog() << "fooFunc2 with arg " << arg; }
     
     template<class inClass>
     void addListener(inClass * target, void (inClass::*callback)()){
@@ -81,6 +79,10 @@ public:
         (*(listener.m_inner))();
         listener.clear();
     }
+
+
+    // Chaining functions
+    Tween & chainTo(float a_end, int a_duration, int a_delay=0, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
 	
 	
 protected:
@@ -110,6 +112,7 @@ protected:
     
     TweenType _tweenType;
 	
+    Tween * _next;
 	
 };
 

@@ -7,14 +7,19 @@ void ofApp::setup() {
 	ofSetVerticalSync(true);
     ofSetCircleResolution(60);
     
-    // must call this before adding any tweens //
+    // must call this before adding any tweens /
     Tweenzor::init();
     
     // float tween
     f = 380;
-    Tweenzor::to(&f, 10, 2).setRepeat(-1, true); // -1 will repeat forever
+//    Tweenzor::to(&f, 10, 2).setRepeat(-1, true); // -1 will repeat forever
+
+    Tweenzor::to(&f, 10, 2).chainTo(250, 7, 2);
+
     // same as this
 //    Tweenzor::add(&f, f, 10, 2).setRepeat(-1, true);
+
+    /*
 	
     // ofVec2 tween
     vec2 = ofVec2f(100, 380);
@@ -45,6 +50,8 @@ void ofApp::setup() {
     Tweenzor::to(&rect, ofRectangle(600, 300, 80, 50), 2).setRepeat(-1, true);
     // same as this
 //    Tweenzor::add(&rect, rect, ofRectangle(600, 300, 80, 50), 2).setRepeat(-1, true);
+ *
+ */
 }
 
 

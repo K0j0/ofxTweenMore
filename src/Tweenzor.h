@@ -27,6 +27,7 @@ public:
 	
 	static void init();
 	static void update(int a_millis);
+	static Tween& addTween(Tween * tween);
     
     // float
     static Tween& add(float* a_property, float a_begin, float a_end,float a_duration,  float a_delay=0, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
