@@ -64,6 +64,10 @@ void TweenColor::_setup(ofFloatColor * a_property, ofFloatColor a_begin, ofFloat
     
     _isRunning	= true;
     _isComplete = false;
+
+    name = "-unassigned color tween-";
+	_next = NULL;
+	hasListener = false;
 }
 
 void TweenColor::updateComplete(bool bTweenIsComplete, int a_millis){

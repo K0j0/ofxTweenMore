@@ -64,6 +64,10 @@ void TweenRect::_setup(ofRectangle * a_property, ofRectangle a_begin, ofRectangl
     
     _isRunning	= true;
     _isComplete = false;
+
+    name = "-unassigned rect tween-";
+	_next = NULL;
+	hasListener = false;
 }
 
 void TweenRect::updateComplete(bool bTweenIsComplete, int a_millis){

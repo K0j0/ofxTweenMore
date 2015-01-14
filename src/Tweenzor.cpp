@@ -51,40 +51,30 @@ void Tweenzor::update(int a_millis) {
 		}
 	}
 	
+    vector<Tween *> chains;
     // remove finished tweens from vector
 	if(__instance->_tweens.size() > 0) {
 		int _totesTweens = __instance->_tweens.size();
 		for(int i = _totesTweens-1; i >= 0; i--) {
-			if(__instance->_tweens[i]->complete()) {
-				removeTween( __instance->_tweens[i] );
-                /*
-                switch(__instance->_tweens[i]->getTweenType()){
-                    case Tween::FLOAT:
-                    break;
-                    case Tween::VEC2:
-                        removeTween(static_cast<TweenVec2 *>(__instance->_tweens[i]));
-                    break;
-                    case Tween::VEC3:
-                        removeTween(static_cast<TweenVec3 *>(__instance->_tweens[i]));
-                    break;
-                    case Tween::VEC4:
-                        removeTween(static_cast<TweenVec4 *>(__instance->_tweens[i]));
-                    break;
-                    case Tween::RECT:
-                        removeTween(static_cast<TweenRect *>(__instance->_tweens[i]));
-                    break;
-                    case Tween::COLOR:
-                        removeTween(static_cast<TweenColor *>(__instance->_tweens[i]));
-                    break;
-                }
-                */
+			Tween * tween = __instance->_tweens[i];
+			if(tween->complete()) {
+				if(tween->hasNext()) chains.push_back(tween->getNext());
+				removeTween(tween);
 			}
 		}
 	}
 	
+	// add chained tweens
+	if(chains.size() > 0){
+		for(int i = 0; i < chains.size(); ++i){
+			chains[i]->reset(__instance->_currMillis);
+			addTween(chains[i]);
+		}
+	}
+
     // Update remaining tweens
     vector<Tween *>::iterator it;
-	for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
+	for (it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++) {
 		(*it)->update( __instance->_currMillis );
 	}
 	

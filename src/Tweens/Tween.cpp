@@ -10,6 +10,7 @@
 #include "Tween.h"
 #include "Tweenzor.h"
 
+// TODO, see if I can get rid of this. Seems like it's never used anyway
 //--------------------------------------------------------------
 // pass in ints for delay and duration as number of frames //
 Tween::Tween(float* a_property, float a_begin, float a_end, int a_duration, int a_delay, int a_easeType, float a_p, float a_a) {
@@ -68,7 +69,7 @@ void Tween::_setup(float* a_property, float a_begin, float a_end, float a_durati
 	_isRunning	= true;
 	_isComplete = false;
     
-    name = "-unassigned-";    
+    name = "-unassigned float tween-";
     _next = NULL;
     hasListener = false;
     
@@ -181,11 +182,11 @@ void Tween::updateComplete(bool bTweenIsComplete, int a_millis){
         }
         
         // Check for chain
-        if(_next != NULL){
-        	ofLog() << "Chain tween";
-        	_next->reset(a_millis);
-        	Tweenzor::addTween(_next);
-        }
+//        if(_next != NULL){
+//        	ofLog() << "Chain tween";
+//        	_next->reset(a_millis);
+//        	Tweenzor::addTween(_next);
+//        }
 
     } else {
         if (_useSeconds) {
@@ -290,5 +291,11 @@ Tween & Tween::chainTo(float a_end, int a_duration, int a_delay, int a_easeType,
 	return *_next;
 }
 
+bool Tween::hasNext(){
+	return _next != NULL;
+}
 
+Tween * Tween::getNext(){
+	return _next;
+}
 

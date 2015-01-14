@@ -60,6 +60,10 @@ void TweenVec2::_setup(ofVec2f * a_property, ofVec2f a_begin, ofVec2f a_end, flo
     
     _isRunning	= true;
     _isComplete = false;
+
+    name = "-unassigned vec2 tween-";
+	_next = NULL;
+	hasListener = false;
 }
 
 void TweenVec2::updateComplete(bool bTweenIsComplete, int a_millis){
