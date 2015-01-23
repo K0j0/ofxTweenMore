@@ -37,6 +37,7 @@ public:
     void update(int a_millis);
     virtual void updateComplete(bool isComplete, int a_millis); // run when duration and delay have passed
     
+    // TODO, make these private and Tweenzor a friend?
 	void remove();
 	
 	bool complete();
@@ -54,7 +55,7 @@ public:
 	virtual void updateProperty();
 	float getTimePct();
 	void setTimePct(float a_pct, int a_millis = 0);
-	void setRepeat( int a_repeat, bool a_pingPong=false );
+	Tween & setRepeat( int a_repeat, bool a_pingPong=false );
     
     virtual TweenType getTweenType() { return _tweenType; }
 	    

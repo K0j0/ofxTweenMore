@@ -153,10 +153,13 @@ void Tween::update(int a_millis) {
             // lets check on the repeat //
             if(_repeatTotal == 0) {
                 bTweenIsComplete = true;
-            } else if(_repeatCount >= _repeatTotal) {
-                bTweenIsComplete = true;
             } else {
-                _repeatCount++;
+                // don't count yoyos in repeat
+                if(_dir == 1) _repeatCount++;
+                
+                if(_repeatCount > _repeatTotal) {
+                    bTweenIsComplete = true;
+                }
             }
             if (_repeatTotal == -1) { // run forever //
                 bTweenIsComplete = false;
@@ -246,10 +249,12 @@ void Tween::setTimePct(float a_pct, int a_millis) {
 }
 
 //--------------------------------------------------------------
-void Tween::setRepeat( int a_repeat, bool a_pingPong ) {
+Tween & Tween::setRepeat( int a_repeat, bool a_pingPong ) {
 	_repeatTotal	= a_repeat;
 	_repeatCount	= 0;
 	_pingPong		= a_pingPong;
+    
+    return *this;
 }
 
 

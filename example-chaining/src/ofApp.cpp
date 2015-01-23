@@ -7,11 +7,14 @@ void ofApp::setup(){
     TM::init();
     
     f = 10;
-    TM::to(&f, 400, 3, 4).chainTo(100, 2, 1);
+//    TM::to(&f, 400, 3, 4).chainTo(100, 2, 1);
 //    TM::to(&f, 400, 3);
 //    TM::add(&f, 10, 400, 3);
     
     f2 = 20;
+//    TM::from(&f2, 400, 3, 4).chainFrom(200, 2, 1);
+    TM::from(&f2, 400, 3, 4).setRepeat(1, true);
+//        TM::from(&f2, 400, 3, 4).setRepeat(1, true).chainFrom(200, 2, 1);
 }
 
 //--------------------------------------------------------------
@@ -25,6 +28,8 @@ void ofApp::draw(){
     ofSetColor(ofColor::red);
     ofDrawCircle(f, 100, 5);
 
+    ofSetColor(ofColor::green);
+    ofDrawCircle(f2, 120, 5);
 }
 
 //--------------------------------------------------------------
