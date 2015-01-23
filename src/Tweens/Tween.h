@@ -46,7 +46,7 @@ public:
 	void pause();
 	void resume(int a_millis);
 	void toggle(int a_millis);
-	void reset(int a_millis);
+	virtual void reset(int a_millis);
     void stop();
 	
 	float* getProperty();
@@ -87,7 +87,6 @@ public:
     Tween & chainFrom(float a_begin, int a_duration, int a_delay=0, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     bool hasNext();
     Tween * getNext();
-	
 	
 protected:
 	void _setup(float* a_property, float a_begin, float a_end, float a_duration, float a_delay, int a_easeType, float a_p, float a_a);

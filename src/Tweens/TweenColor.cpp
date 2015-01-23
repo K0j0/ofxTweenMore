@@ -122,6 +122,17 @@ ofFloatColor TweenColor::getPropertyValue() {
     return *_propAdd;
 }
 
+void TweenColor::reset(int a_millis) {
+    if (!_isComplete) {
+        *_propAdd = _beginColor;
+        
+        _startTime = a_millis;
+        _time = 0.f;
+        
+        _isComplete = false;
+    }
+    cout << "Tween :: reset : running: " << running() << " complete: " << complete() << endl;
+}
 
 // GETTERS //
 //--------------------------------------------------------------
@@ -139,4 +150,21 @@ float TweenColor::getPropertyPct() {
         else pct = (_propAdd->a - _begin.w) / (_end.w - _begin.w);
     }
     return pct < 0 ? pct * -1 : pct;
+}
+
+// Chaining
+TweenColor & TweenColor::chainTo(ofFloatColor a_end, int a_duration, int a_delay, int a_easeType, float a_p, float a_a){
+    _next = new TweenColor(this->_propAdd, 0, this->_endColor, a_end, a_duration, a_delay, a_easeType, a_p, a_a);
+    _next->name = "chainer";
+    return *(static_cast<TweenColor *>(_next));
+}
+
+TweenColor & TweenColor::chainFrom(ofFloatColor a_begin, int a_duration, int a_delay, int a_easeType, float a_p, float a_a){
+    _next = new TweenColor(this->_propAdd, 0, a_begin, this->_endColor, a_duration, a_delay, a_easeType, a_p, a_a);
+    _next->name = "chainer";
+    return *(static_cast<TweenColor *>(_next));
+}
+
+TweenColor * TweenColor::getNext(){
+    return static_cast<TweenColor *>(_next);
 }

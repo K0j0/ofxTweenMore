@@ -26,6 +26,12 @@ public:
     float getPropertyPct();
     void updateProperty();
     
+    void reset(int a_millis);
+    
+    // Chaining functions
+    TweenVec4 & chainTo(ofVec4f a_end, int a_duration, int a_delay=0, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    TweenVec4 & chainFrom(ofVec4f a_begin, int a_duration, int a_delay=0, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    TweenVec4 * getNext();
     
 protected:
     void _setup(ofVec4f * a_property, ofVec4f a_begin, ofVec4f a_end, float a_duration, float a_delay, int a_easeType, float a_p, float a_a);

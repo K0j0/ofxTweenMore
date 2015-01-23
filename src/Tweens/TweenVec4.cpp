@@ -118,6 +118,17 @@ ofVec4f TweenVec4::getPropertyValue() {
     return *_propAdd;
 }
 
+void TweenVec4::reset(int a_millis) {
+    if (!_isComplete) {
+        *_propAdd = _begin;
+        
+        _startTime = a_millis;
+        _time = 0.f;
+        
+        _isComplete = false;
+    }
+    cout << "Tween :: reset : running: " << running() << " complete: " << complete() << endl;
+}
 
 // GETTERS //
 //--------------------------------------------------------------
@@ -137,3 +148,19 @@ float TweenVec4::getPropertyPct() {
     return pct < 0 ? pct * -1 : pct;
 }
 
+// Chaining
+TweenVec4 & TweenVec4::chainTo(ofVec4f a_end, int a_duration, int a_delay, int a_easeType, float a_p, float a_a){
+    _next = new TweenVec4(this->_propAdd, 0, this->_end, a_end, a_duration, a_delay, a_easeType, a_p, a_a);
+    _next->name = "chainer";
+    return *(static_cast<TweenVec4 *>(_next));
+}
+
+TweenVec4 & TweenVec4::chainFrom(ofVec4f a_begin, int a_duration, int a_delay, int a_easeType, float a_p, float a_a){
+    _next = new TweenVec4(this->_propAdd, 0, a_begin, this->_end, a_duration, a_delay, a_easeType, a_p, a_a);
+    _next->name = "chainer";
+    return *(static_cast<TweenVec4 *>(_next));
+}
+
+TweenVec4 * TweenVec4::getNext(){
+    return static_cast<TweenVec4 *>(_next);
+}

@@ -122,6 +122,17 @@ ofRectangle TweenRect::getPropertyValue() {
     return *_propAdd;
 }
 
+void TweenRect::reset(int a_millis) {
+    if (!_isComplete) {
+        *_propAdd = _beginRect;
+        
+        _startTime = a_millis;
+        _time = 0.f;
+        
+        _isComplete = false;
+    }
+    cout << "Tween :: reset : running: " << running() << " complete: " << complete() << endl;
+}
 
 // GETTERS //
 //--------------------------------------------------------------
@@ -139,4 +150,21 @@ float TweenRect::getPropertyPct() {
         else pct = (_propAdd->height - _begin.w) / (_end.w - _begin.w);
     }
     return pct < 0 ? pct * -1 : pct;
+}
+
+// Chaining
+TweenRect & TweenRect::chainTo(ofRectangle a_end, int a_duration, int a_delay, int a_easeType, float a_p, float a_a){
+    _next = new TweenRect(this->_propAdd, 0, this->_endRect, a_end, a_duration, a_delay, a_easeType, a_p, a_a);
+    _next->name = "chainer";
+    return *(static_cast<TweenRect *>(_next));
+}
+
+TweenRect & TweenRect::chainFrom(ofRectangle a_begin, int a_duration, int a_delay, int a_easeType, float a_p, float a_a){
+    _next = new TweenRect(this->_propAdd, 0, a_begin, this->_endRect, a_duration, a_delay, a_easeType, a_p, a_a);
+    _next->name = "chainer";
+    return *(static_cast<TweenRect *>(_next));
+}
+
+TweenRect * TweenRect::getNext(){
+    return static_cast<TweenRect *>(_next);
 }

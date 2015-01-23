@@ -25,6 +25,12 @@ public:
     float getPropertyPct();
     void updateProperty();
     
+    void reset(int a_millis);
+    
+    // Chaining functions
+    TweenColor & chainTo(ofFloatColor a_end, int a_duration, int a_delay=0, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    TweenColor & chainFrom(ofFloatColor a_begin, int a_duration, int a_delay=0, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    TweenColor * getNext();
     
 protected:
     void _setup(ofFloatColor * a_property, ofFloatColor a_begin, ofFloatColor a_end, float a_duration, float a_delay, int a_easeType, float a_p, float a_a);
