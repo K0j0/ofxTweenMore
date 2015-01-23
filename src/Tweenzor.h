@@ -122,6 +122,8 @@ private:
 	int _currMillis;
 };
 
+typedef Tweenzor TM;
+
 #endif
 
 

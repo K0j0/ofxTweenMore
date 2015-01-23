@@ -291,6 +291,12 @@ Tween & Tween::chainTo(float a_end, int a_duration, int a_delay, int a_easeType,
 	return *_next;
 }
 
+Tween & Tween::chainFrom(float a_begin, int a_duration, int a_delay, int a_easeType, float a_p, float a_a){
+    _next = new Tween(this->_propAdd, 0, a_begin, this->_end, a_duration, a_delay, a_easeType, a_p, a_a);
+    _next->name = "chainer";
+    return *_next;
+}
+
 bool Tween::hasNext(){
 	return _next != NULL;
 }

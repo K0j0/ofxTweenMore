@@ -83,6 +83,7 @@ public:
 
     // Chaining functions
     Tween & chainTo(float a_end, int a_duration, int a_delay=0, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
+    Tween & chainFrom(float a_begin, int a_duration, int a_delay=0, int a_easeType=EASE_LINEAR, float a_p=0, float a_a=0);
     bool hasNext();
     Tween * getNext();
 	

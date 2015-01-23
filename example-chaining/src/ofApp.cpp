@@ -4,18 +4,20 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofLog() << "Start. elapsed: " << ofGetElapsedTimeMillis();
-    Tweenzor::init();
+    TM::init();
     
     f = 10;
-    Tweenzor::to(&f, 400, 3, 4).chainTo(100, 2, 1);
-//    Tweenzor::to(&f, 400, 3);
-//    Tweenzor::add(&f, 10, 400, 3);
+    TM::to(&f, 400, 3, 4).chainTo(100, 2, 1);
+//    TM::to(&f, 400, 3);
+//    TM::add(&f, 10, 400, 3);
+    
+    f2 = 20;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    if(f < 400) ofLog() << "elapsed: " << ofGetElapsedTimeMillis();
-    Tweenzor::update(ofGetElapsedTimeMillis());
+//    if(f < 400) ofLog() << "elapsed: " << ofGetElapsedTimeMillis();
+    TM::update(ofGetElapsedTimeMillis());
 }
 
 //--------------------------------------------------------------

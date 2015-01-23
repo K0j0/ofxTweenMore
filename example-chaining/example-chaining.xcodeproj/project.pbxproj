@@ -156,10 +156,10 @@
 		B4CD11B36D5517688D8A8C4D /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C8EF3F9ABF884400BB100EF6 /* Tweens */,
 				73AB71DDA5921325CB07F2B8 /* ofxTweenzor.h */,
 				E074D29AB98372E764270901 /* TweenFunctions.h */,
 				4C43FEC28D44ECEAE16113AC /* TweenListener.h */,
-				C8EF3F9ABF884400BB100EF6 /* Tweens */,
 				F5B9712670768B9B5B8930FD /* TweenSelector.h */,
 				D2499704A162F4F2409E99E1 /* Tweenzor.cpp */,
 				8A46B324635AF048E65B29B2 /* Tweenzor.h */,
