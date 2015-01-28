@@ -34,7 +34,7 @@ TweenRect::TweenRect(ofRectangle * a_property, int a_millis, ofRectangle  a_begi
 
 //--------------------------------------------------------------
 void TweenRect::_setup(ofRectangle * a_property, ofRectangle a_begin, ofRectangle a_end, float a_duration, float a_delay, int a_easeType, float a_p, float a_a) {
-    _tweenType = VEC4;
+    _tweenType = RECT;
     
     _propAdd	= a_property;
     
