@@ -7,7 +7,7 @@ What's different?
 --------
 * To and From tweens (Shorthand for when you want to start or end with a variable's current value)
 * Swapped position of delay and duration and made delay optional (Less typing since tweens don't always need a delay)
-* TM shorthand (Just a typedef for a a little less typing)
+* TM shorthand (Just a typedef for a little less typing)
 * Ping ponged tweens no longer count against a tween's count (If ping pong is set to true, going out and back is counted as 1 iteration rather than 2)
 * Specific tween types for certain parameters (@tiagosr added a feature to tween vectors, colors and rectangles. Now those kinds of tweens can be referenced explicitly. They're no longer just a bunch of float tweens)
 * Generlaized callbacks (callbacks can now take any parameter or no paramater, rather than just float)
