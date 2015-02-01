@@ -27,13 +27,13 @@
 		E7E077E515D3B63C0020DFD4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */; };
 		E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E715D3B6510020DFD4 /* QTKit.framework */; };
 		E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F985F515E0DE99003869B5 /* Accelerate.framework */; };
-		E80F019D1A4E8FD800F4ED26 /* Tweenzor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F019A1A4E8FD800F4ED26 /* Tweenzor.cpp */; };
 		E80F01B11A51003F00F4ED26 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F01A91A51003F00F4ED26 /* Tween.cpp */; };
 		E80F01B21A51003F00F4ED26 /* TweenVec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F01AB1A51003F00F4ED26 /* TweenVec2.cpp */; };
 		E80F01B31A51003F00F4ED26 /* TweenVec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F01AD1A51003F00F4ED26 /* TweenVec3.cpp */; };
 		E80F01B41A51003F00F4ED26 /* TweenVec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F01AF1A51003F00F4ED26 /* TweenVec4.cpp */; };
 		E80F02DA1A56334500F4ED26 /* TweenColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F02D81A56334500F4ED26 /* TweenColor.cpp */; };
 		E80F02DD1A572CD900F4ED26 /* TweenRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80F02DB1A572CD900F4ED26 /* TweenRect.cpp */; };
+		E8BBE7841A7EDCF50010D01F /* TweenMore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8BBE7821A7EDCF50010D01F /* TweenMore.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,11 +91,8 @@
 		E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		E7E077E715D3B6510020DFD4 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		E7F985F515E0DE99003869B5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
-		E80F01941A4E8FD800F4ED26 /* ofxTweenzor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTweenzor.h; sourceTree = "<group>"; };
 		E80F01981A4E8FD800F4ED26 /* TweenFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenFunctions.h; sourceTree = "<group>"; };
 		E80F01991A4E8FD800F4ED26 /* TweenSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenSelector.h; sourceTree = "<group>"; };
-		E80F019A1A4E8FD800F4ED26 /* Tweenzor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tweenzor.cpp; sourceTree = "<group>"; };
-		E80F019B1A4E8FD800F4ED26 /* Tweenzor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweenzor.h; sourceTree = "<group>"; };
 		E80F01A11A4F5AAF00F4ED26 /* TweenListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenListener.h; sourceTree = "<group>"; };
 		E80F01A91A51003F00F4ED26 /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
 		E80F01AA1A51003F00F4ED26 /* Tween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tween.h; sourceTree = "<group>"; };
@@ -109,6 +106,9 @@
 		E80F02D91A56334500F4ED26 /* TweenColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenColor.h; sourceTree = "<group>"; };
 		E80F02DB1A572CD900F4ED26 /* TweenRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TweenRect.cpp; sourceTree = "<group>"; };
 		E80F02DC1A572CD900F4ED26 /* TweenRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenRect.h; sourceTree = "<group>"; };
+		E8BBE7811A7EDCF50010D01F /* ofxTweenMore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTweenMore.h; sourceTree = "<group>"; };
+		E8BBE7821A7EDCF50010D01F /* TweenMore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TweenMore.cpp; sourceTree = "<group>"; };
+		E8BBE7831A7EDCF50010D01F /* TweenMore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenMore.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,12 +222,12 @@
 			isa = PBXGroup;
 			children = (
 				E80F01A81A51003F00F4ED26 /* Tweens */,
-				E80F01941A4E8FD800F4ED26 /* ofxTweenzor.h */,
+				E8BBE7811A7EDCF50010D01F /* ofxTweenMore.h */,
 				E80F01A11A4F5AAF00F4ED26 /* TweenListener.h */,
 				E80F01981A4E8FD800F4ED26 /* TweenFunctions.h */,
+				E8BBE7821A7EDCF50010D01F /* TweenMore.cpp */,
+				E8BBE7831A7EDCF50010D01F /* TweenMore.h */,
 				E80F01991A4E8FD800F4ED26 /* TweenSelector.h */,
-				E80F019A1A4E8FD800F4ED26 /* Tweenzor.cpp */,
-				E80F019B1A4E8FD800F4ED26 /* Tweenzor.h */,
 			);
 			name = ofxTweenMore;
 			path = ../src;
@@ -347,7 +347,7 @@
 				E80F02DD1A572CD900F4ED26 /* TweenRect.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				E80F01B11A51003F00F4ED26 /* Tween.cpp in Sources */,
-				E80F019D1A4E8FD800F4ED26 /* Tweenzor.cpp in Sources */,
+				E8BBE7841A7EDCF50010D01F /* TweenMore.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
