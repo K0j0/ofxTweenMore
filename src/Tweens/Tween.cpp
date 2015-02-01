@@ -8,7 +8,7 @@
  */
 
 #include "Tween.h"
-#include "Tweenzor.h"
+#include "TweenMore.h"
 
 // TODO, see if I can get rid of this. Seems like it's never used anyway
 //--------------------------------------------------------------

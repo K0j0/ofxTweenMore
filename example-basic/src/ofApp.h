@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxTweenzor.h"
+#include "ofxTweenMore.h"
 
 class ofApp : public ofBaseApp{
 public:
