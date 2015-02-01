@@ -1,13 +1,13 @@
 //
 //  TweenColor.h
-//  TweenzorSimpleExample
+//  TweenMoreSimpleExample
 //
 //  Created by Kojo Kumah on 1/1/15.
 //
 //
 
-#ifndef __TweenzorSimpleExample__TweenColor__
-#define __TweenzorSimpleExample__TweenColor__
+#ifndef __TweenMoreSimpleExample__TweenColor__
+#define __TweenMoreSimpleExample__TweenColor__
 
 #include "Tween.h"
 
@@ -44,4 +44,4 @@ protected:
 
 
 
-#endif /* defined(__TweenzorSimpleExample__TweenColor__) */
+#endif /* defined(__TweenMoreSimpleExample__TweenColor__) */

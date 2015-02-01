@@ -1,13 +1,13 @@
 //
 //  TweenRect.h
-//  TweenzorSimpleExample
+//  TweenMoreSimpleExample
 //
 //  Created by Kojo Kumah on 1/2/15.
 //
 //
 
-#ifndef __TweenzorSimpleExample__TweenRect__
-#define __TweenzorSimpleExample__TweenRect__
+#ifndef __TweenMoreSimpleExample__TweenRect__
+#define __TweenMoreSimpleExample__TweenRect__
 
 #include "Tween.h"
 
@@ -46,4 +46,4 @@ protected:
 
 
 
-#endif /* defined(__TweenzorSimpleExample__TweenRect__) */
+#endif /* defined(__TweenMoreSimpleExample__TweenRect__) */

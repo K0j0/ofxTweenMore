@@ -10,7 +10,7 @@ ofRectangle rect;
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofLog() << "Start. elapsed: " << ofGetElapsedTimeMillis();
-    TM::init();
+    TM::init(); // can use TM as shorthand for TweenMore
     
     f = 10;
     TM::to(&f, 400, 2, 4).chainTo(200, 1, 1);

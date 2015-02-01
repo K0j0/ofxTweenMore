@@ -1,6 +1,6 @@
 //
 //  TweenRect.cpp
-//  TweenzorSimpleExample
+//  TweenMoreSimpleExample
 //
 //  Created by Kojo Kumah on 1/2/15.
 //

@@ -1,13 +1,13 @@
 //
 //  TweenVec4.h
-//  TweenzorSimpleExample
+//  TweenMoreSimpleExample
 //
 //  Created by Kojo Kumah on 12/28/14.
 //
 //
 
-#ifndef TweenzorSimpleExample_TweenVec4_h
-#define TweenzorSimpleExample_TweenVec4_h
+#ifndef TweenMoreSimpleExample_TweenVec4_h
+#define TweenMoreSimpleExample_TweenVec4_h
 
 
 #include "Tween.h"

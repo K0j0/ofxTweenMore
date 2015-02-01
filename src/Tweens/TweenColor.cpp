@@ -1,6 +1,6 @@
 //
 //  TweenColor.cpp
-//  TweenzorSimpleExample
+//  TweenMoreSimpleExample
 //
 //  Created by Kojo Kumah on 1/1/15.
 //

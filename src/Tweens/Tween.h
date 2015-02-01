@@ -37,7 +37,7 @@ public:
     void update(int a_millis);
     virtual void updateComplete(bool isComplete, int a_millis); // run when duration and delay have passed
     
-    // TODO, make these private and Tweenzor a friend?
+    // TODO, make these private and TweenMore a friend?
 	void remove();
 	
 	bool complete();

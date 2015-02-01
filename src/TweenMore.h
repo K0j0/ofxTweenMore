@@ -13,9 +13,9 @@
 #include "TweenListener.h"
 
 
-class Tweenzor {
+class TweenMore {
 public:
-	static Tweenzor* Instance();
+	static TweenMore* Instance();
 	
 	static void init();
 	static void update(int a_millis);
@@ -106,15 +106,15 @@ public:
 	
 
 protected:
-	Tweenzor() {};
+	TweenMore() {};
 	
 private:
-	static Tweenzor* __instance;
+	static TweenMore* __instance;
 	vector <Tween *> _tweens;	
 	int _currMillis;
 };
 
-typedef Tweenzor TM;
+typedef TweenMore TM;
 
 #endif
 

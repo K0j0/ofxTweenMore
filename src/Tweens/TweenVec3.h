@@ -1,6 +1,6 @@
 //
 //  TweenVec3.h
-//  TweenzorSimpleExample
+//  TweenMoreSimpleExample
 //
 //  Created by Kojo Kumah on 12/28/14.
 //

@@ -188,7 +188,7 @@ void Tween::updateComplete(bool bTweenIsComplete, int a_millis){
 //        if(_next != NULL){
 //        	ofLog() << "Chain tween";
 //        	_next->reset(a_millis);
-//        	Tweenzor::addTween(_next);
+//        	TweenMore::addTween(_next);
 //        }
 
     } else {
