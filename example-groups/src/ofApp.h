@@ -20,8 +20,4 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
-
-    ofPoint center;
-    vector<ofVec2f> reds;
-    vector<ofVec2f> blues;
 };

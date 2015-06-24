@@ -1,20 +1,19 @@
 #include "ofApp.h"
 
-ofFloatColor color;
 
-struct box{
-	box(ofColor _color, ofVec2f _start, ofVec2f _target){
+struct littleBall{
+	littleBall(ofColor _color, ofVec2f _start, ofVec2f _target){
 		color = _color;
 		pos = start = _start;
 		target = _target;
 	}
 	ofColor color;
-	ofVec2f pos;
+	ofVec2f pos; // current position
 
-	ofVec2f start;
-	ofVec2f target;
+	ofVec2f start; // start position
+	ofVec2f target; // end position
 };
-vector<box> boxes;
+vector<littleBall> boxes;
 
 //--------------------------------------------------------------
 void ofApp::setup() {
@@ -25,20 +24,20 @@ void ofApp::setup() {
     TM::init();
     
     float width = ofGetWindowWidth();
-    float height = ofGetWindowHeight();
-    center.x = width/2;
-    center.y = height/2;
 
-    box b1 = box(ofColor::red, ofVec2f(10, 50), ofVec2f(width -10, 50));
-    box b2 = box(ofColor::yellow, ofVec2f(10, 150), ofVec2f(width -10, 150));
-    box b3 = box(ofColor::green, ofVec2f(10, 250), ofVec2f(width -10, 250));
+    int padding = 50;
+    // make 3 little balls
+    littleBall b1 = littleBall(ofColor::red, ofVec2f(padding, 50), ofVec2f(width - padding, 50));
+    littleBall b2 = littleBall(ofColor::yellow, ofVec2f(padding, 150), ofVec2f(width - padding, 150));
+    littleBall b3 = littleBall(ofColor::green, ofVec2f(padding, 250), ofVec2f(width - padding, 250));
 
     boxes.push_back(b1);
     boxes.push_back(b2);
     boxes.push_back(b3);
 
+    // tween position to target and loop forever, set each to have group id of loop index
     for(int i = 0; i < 3; ++i){
-    	TM::to(&boxes[i].pos, boxes[i].target, 3).setGroupID(i).setRepeat(-1, true);
+    	TM::to(&boxes[i].pos, boxes[i].target, 3).setRepeat(-1, true).setGroupID(i);
     }
 }
 
@@ -55,6 +54,7 @@ void ofApp::draw(){
 		ofSetColor(boxes[i].color);
 		ofDrawCircle(boxes[i].pos.x, boxes[i].pos.y, 5);
 	}
+	ofDrawBitmapStringHighlight("Left Arrow to stop RED (0)\nDown Arrow to  YELLOW (1)\nRight Arrow to stop GREEN (2)", 50, 350);
 
 }
 
