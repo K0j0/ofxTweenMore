@@ -22,7 +22,7 @@ void TweenMore::init() {
 void TweenMore::update(int a_millis) {
 	
 	__instance->_currMillis = a_millis;
-		
+
     // check for finished tweens then call their callbacks if they have any
 	// TODO, check for length changes in case a callback changes the size of tweens vector
     int len = __instance->_tweens.size();
@@ -40,7 +40,7 @@ void TweenMore::update(int a_millis) {
             }
 		}
 	}
-	
+
     vector<Tween *> chains;
     // remove finished tweens from vector
 	if(__instance->_tweens.size() > 0) {
@@ -48,7 +48,9 @@ void TweenMore::update(int a_millis) {
 		for(int i = _totesTweens-1; i >= 0; i--) {
 			Tween * tween = __instance->_tweens[i];
 			if(tween->complete()) {
-				if(tween->hasNext()) chains.push_back(tween->getNext());
+				if(tween->hasNext()){
+					chains.push_back(tween->getNext());
+				}
 				removeTween(tween);
 			}
 		}
@@ -67,7 +69,7 @@ void TweenMore::update(int a_millis) {
 	for (it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++) {
 		(*it)->update( __instance->_currMillis );
 	}
-	
+
 }
 
 Tween& TweenMore::addTween(Tween * tween){
@@ -527,6 +529,24 @@ void TweenMore::removeTween(ofFloatColor * a_property) {
             i++;
         }
     }
+}
+
+//--------------------------------------------------------------
+void TweenMore::removeTweenGroup(int id){
+	if (__instance->_tweens.size() > 0) {
+		int i = 0;
+		vector<Tween *>::iterator it;
+		for ( it=__instance->_tweens.begin(); it < __instance->_tweens.end(); it++ ) {
+			if ( (*it)->getGroupID() == id ) {
+//				if(removeListeners) removeCompleteListener(it->eventID);
+				(*it)->remove();
+				delete *it;
+				it = __instance->_tweens.erase( it );
+				--it; // decrement iterator so end isn't reached prematurely
+			}
+			i++;
+		}
+	}
 }
 
 void TweenMore::removeAllTweens() {

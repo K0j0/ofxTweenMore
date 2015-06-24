@@ -56,6 +56,8 @@ public:
 	float getTimePct();
 	void setTimePct(float a_pct, int a_millis = 0);
 	Tween & setRepeat( int a_repeat, bool a_pingPong=false );
+	Tween & setGroupID(int id);
+	int getGroupID();
     
     virtual TweenType getTweenType() { return _tweenType; }
 	    
@@ -109,6 +111,8 @@ protected:
 	bool _pingPong; // default: false; true = _begin -> _end, _end -> _begin..., as many times as repeat is set //
 	int _dir; // used for _pingPong; if 1 than _begin -> _end; if -1 then _end -> _start //
 	
+	int groupID;
+
 	bool _isComplete;
 	bool _isRunning;
 	bool _useSeconds;

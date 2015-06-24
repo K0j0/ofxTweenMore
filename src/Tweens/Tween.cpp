@@ -310,3 +310,12 @@ Tween * Tween::getNext(){
 	return _next;
 }
 
+Tween & Tween::setGroupID(int id){
+	groupID = id;
+//	ofLog() << "Set groupID to " << groupID;
+}
+
+int Tween::getGroupID(){
+//	ofLog() << "Get groupID: " << groupID;
+	return groupID;
+}

@@ -77,6 +77,7 @@ public:
     static void removeTween(ofFloatColor * a_property);
     static void removeTween(ofRectangle * a_property);
     static void removeAllTweens();
+    static void removeTweenGroup(int id);
 	
 	static void destroy();
 	
