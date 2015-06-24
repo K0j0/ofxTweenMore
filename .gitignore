@@ -52,6 +52,7 @@ apps/*
 # general
 #########################
 
+bin
 [Bb]uild/
 [Oo]bj/
 *.o
