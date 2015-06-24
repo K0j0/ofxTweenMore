@@ -33,8 +33,7 @@ What's different?
 
 What's planned?
 --------
-* Tween groups that can be controlled/deleted together
+* Lambda callbacks now that C++11 is fully supported in OFX!
+* More custom tween handlers (onStart, onUpdate) with parameters
 * A timeline
 * Maybe even more generalized callbacks with return types other than void
-* Custom tween handlers (onStart, onUpdate) with parameters
-* Lambda callbacks once C++11 is fully supported in OFX
